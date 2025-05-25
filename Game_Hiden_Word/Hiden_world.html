@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Blok Kata</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: #f0f0f0;
+        }
+        #game-container {
+            font-size: 2.5em; /* Font besar */
+            line-height: 1.1; /* Rapat vertikal */
+            background-color: #fff;
+            padding: 20px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            max-width: 1600px; /* Lebar frame 1600px */
+            height: 600px; /* Tinggi frame 600px */
+            margin: 0 auto;
+            user-select: text;
+            white-space: pre-wrap;
+            text-align: left;
+            overflow-x: auto; /* Scroll horizontal */
+            overflow-y: hidden; /* Tidak ada scroll vertikal */
+        }
+        #game-container::-webkit-scrollbar {
+            height: 10px; /* Tinggi scrollbar */
+        }
+        #game-container::-webkit-scrollbar-thumb {
+            background-color: #888; /* Warna thumb scrollbar */
+            border-radius: 5px;
+        }
+        #game-container::-webkit-scrollbar-track {
+            background-color: #f1f1f1; /* Warna track scrollbar */
+        }
+        #message {
+            font-size: 1.2em;
+            margin-top: 20px;
+            color: #333;
+        }
+        #score {
+            font-size: 1.2em;
+            color: #4CAF50;
+        }
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <h1>Game Blok Kata</h1>
+    <p>Blok (highlight) kata yang benar dari kalimat: "MAKAN MINUM MANDI THINK DAPAT LILIN JUBAH METTA ANDA GRAHA TIDUR BACA TULIS LARI DUDUK JALAN NYANYI TARI GAMBAR MAIN"</p>
+    <div id="game-container"></div>
+    <p id="message"></p>
+    <p id="score">Skor: 0</p>
+
+    <script>
+        const words = [
+            "MAKAN", "MINUM", "MANDI", "THINK", "DAPAT", 
+            "LILIN", "JUBAH", "METTA", "ANDA", "GRAHA",
+            "TIDUR", "BACA", "TULIS", "LARI", "DUDUK",
+            "JALAN", "NYANYI", "TARI", "GAMBAR", "MAIN"
+        ];
+        let score = 0;
+        let foundWords = [];
+
+        // Fungsi untuk menghasilkan huruf acak (kapital)
+        function randomLetter() {
+            const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            return alphabet[Math.floor(Math.random() * alphabet.length)];
+        }
+
+        // Membuat teks acak dengan kata-kata tersembunyi, disusun per baris
+        function generateMixedText() {
+            let text = "";
+            const charsPerLine = 100; // Jumlah karakter per baris (lebih panjang supaya ada scroll)
+            const totalLines = 12; // Jumlah baris
+            let wordIndex = 0;
+
+            for (let line = 0; line < totalLines; line++) {
+                let lineText = "";
+                let position = 0;
+
+                while (position < charsPerLine) {
+                    // Sisipkan kata jika masih ada kata yang belum digunakan
+                    if (wordIndex < words.length && Math.random() > 0.7) {
+                        const word = words[wordIndex];
+                        if (position + word.length <= charsPerLine) {
+                            lineText += word;
+                            position += word.length;
+                            wordIndex++;
+                        } else {
+                            // Isi sisa dengan huruf acak jika kata tidak muat
+                            while (position < charsPerLine) {
+                                lineText += randomLetter();
+                                position++;
+                            }
+                        }
+                    } else {
+                        // Tambah huruf acak
+                        lineText += randomLetter();
+                        position++;
+                    }
+                }
+                text += lineText + "\n"; // Tambah newline untuk baris baru
+            }
+
+            return text;
+        }
+
+        // Tampilkan teks di container
+        const gameContainer = document.getElementById("game-container");
+        gameContainer.textContent = generateMixedText();
+
+        // Fungsi untuk cek kata yang diblok
+        function checkSelection() {
+            const selection = window.getSelection();
+            const selectedText = selection.toString().trim().toUpperCase(); // Ubah input jadi kapital
+            const message = document.getElementById("message");
+
+            if (selectedText.length > 0) {
+                if (words.includes(selectedText) && !foundWords.includes(selectedText)) {
+                    foundWords.push(selectedText);
+                    score += 10;
+                    document.getElementById("score").textContent = `Skor: ${score}`;
+                    message.textContent = `Benar! Kamu menemukan "${selectedText}"`;
+                    
+                    // Highlight kata yang ditemukan
+                    const range = selection.getRangeAt(0);
+                    const span = document.createElement("span");
+                    span.className = "highlight";
+                    span.textContent = selectedText;
+                    range.deleteContents();
+                    range.insertNode(span);
+
+                    // Cek jika semua kata ditemukan
+                    if (foundWords.length === words.length) {
+                        message.textContent = "Selamat! Kamu menemukan semua kata!";
+                    }
+                } else if (foundWords.includes(selectedText)) {
+                    message.textContent = "Kata ini sudah ditemukan!";
+                } else {
+                    message.textContent = "Salah! Itu bukan kata yang benar.";
+                }
+            }
+
+            // Reset seleksi setelah cek
+            selection.removeAllRanges();
+        }
+
+        // Event listener untuk deteksi seleksi
+        document.addEventListener("mouseup", checkSelection);
+    </script>
+</body>
+</html>

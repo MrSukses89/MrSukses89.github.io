@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <title>Game Tebak Angka</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> <!-- Tambah particles.js -->
+    <style>
+        body {
+            transform: scale(0.98);
+            transform-origin: top center;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Biar partikel nggak bikin scrollbar */
+        }
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Partikel di belakang konten */
+            background-color: #f0f0f0; /* Warna latar */
+        }
+        .shake {
+            animation: shake 0.5s; /* Animasi getar */
+        }
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div> <!-- Kontainer buat partikel -->
+    <div class="canvas-container" style="display: none;">
+        <canvas id="gameCanvas" width="1176" height="784"></canvas>
+        <button id="titleButton">Game Tebak Angka<br>Tebak angka 1-100</button>
+        <div class="game-overlay">
+            <input type="number" id="tebakan" placeholder="Masukkan tebakan Anda">
+            <button id="cek">Cek</button>
+            <p id="pesan"></p>
+            <p id="jumlahTebakan"></p>
+            <button id="mainLagi" style="display: none;">Main Lagi</button>
+        </div>
+    </div>
+    <!-- Kontainer untuk tombol Yes/No -->
+    <div id="startOptions">
+        <p>Main dengan musik?</p>
+        <button id="startYesButton">Yes</button>
+        <button id="startNoButton">No</button>
+    </div>
+    <!-- Elemen audio untuk musik latar -->
+    <audio id="backgroundMusic" loop>
+        <source src="Sound Original/Backsound.mp3" type="audio/mpeg">
+        Browser kamu nggak support audio.
+    </audio>
+    <!-- Elemen audio untuk suara salah -->
+    <audio id="wrongSound">
+        <source src="Sound Effect Itakimo Bali ahh.mp3" type="audio/mpeg">
+        Browser kamu nggak support audio.
+    </audio>
+    <!-- Elemen audio untuk suara menang -->
+    <audio id="winSound">
+        <source src="win-sound.mp3" type="audio/mpeg">
+        Browser kamu nggak support audio.
+    </audio>
+    <script src="script.js"></script>
+</body>
+</html>

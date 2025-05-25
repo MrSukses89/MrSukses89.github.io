@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game</title>
+    <link rel="stylesheet" href="f:\HTML\Game HTML\NaavCSS.css">
+    <style>
+        #howToPlayText {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #1a1a1a 0%, #4a2c5f 100%);
+            color: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 80%;
+            max-height: 80%;
+            overflow: auto;
+            z-index: 1000;
+            font-family: 'Arial', sans-serif;
+            font-size: 18px;
+            border: 3px solid #00ff00;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.7);
+            transition: all 0.3s ease;
+        }
+
+        #howToPlayText h2 {
+            color: #ff4444;
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        #howToPlayText pre {
+            white-space: pre-wrap;
+            line-height: 1.5;
+            color: #e0e0e0;
+        }
+
+        #howToPlayText button {
+            display: block;
+            margin: 20px auto 0;
+            padding: 10px 20px;
+            background-color: #ff4444;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        #howToPlayText button:hover {
+            background-color: #cc3333;
+            transform: scale(1.05);
+        }
+
+        #howToPlayText button:active {
+            transform: scale(0.95);
+        }
+
+        /* Styling untuk volume controls */
+        #volumeControls {
+            position: absolute;
+            top: 10px;
+            left: 200px;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        #volumeControls label {
+            font-size: 16px;
+        }
+
+        #volumeControls input[type="range"] {
+            width: 100px;
+        }
+
+        #volumeControls button {
+            padding: 5px 10px;
+            background-color: #00ff00;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        #volumeControls button:hover {
+            background-color: #00cc00;
+            transform: scale(1.1);
+        }
+
+        #volumeControls button:active {
+            transform: scale(0.9);
+        }
+    </style>
+</head>
+<body>
+    <nav class="beautiful-nav">
+        <ul>
+            <li><button class="nav-button" onclick="startGame()">Start Game</button></li>
+            <li><button class="nav-button" onclick="pauseGame()">Pause</button></li>
+            <li><button class="nav-button" onclick="resetGame()">Reset</button></li>
+            <li><button class="nav-button" onclick="toggleMusic()">Toggle Music</button></li>
+            <li><button class="nav-button" onclick="showHowToPlay()">How to Play</button></li>
+        </ul>
+    </nav>
+
+    <div class="score-display">
+        <p>Skor: <span id="scoreText">0</span></p>
+    </div>
+
+    <div id="howToPlayText">
+        <h2>How to Play</h2>
+        <pre>
+1. Gunakan tombol panah (Arrow Keys) untuk menggerakkan ular.
+2. Makan makanan merah untuk menambah skor dan membuat ular bertambah panjang.
+3. Hindari menabrak batu abu-abu, dinding, atau tubuh ular sendiri.
+4. Makan batu biru untuk meningkatkan kecepatan menjadi 20.
+5. Makan batu ungu untuk meningkatkan kecepatan menjadi 25.
+6. Makan batu kuning untuk mengembalikan kecepatan ke normal (14).
+7. Tekan "M" untuk mute/unmute musik latar.
+8. Gunakan slider atau tombol +/- untuk mengatur volume musik dan efek.
+9. Tekan "Enter" untuk memulai ulang setelah game over.
+Selamat bermain, Salam Bahagia Selalu dari Mr. Sukses!
+        </pre>
+        <button onclick="hideHowToPlay()">Close</button>
+    </div>
+
+    <canvas id="gameCanvas" width="1080" height="600"></canvas>
+
+    <audio id="eatSound" src="f:\HTML\Game HTML\ahh!! sound effect.mp3"></audio>
+    <audio id="crashSound" src="f:\HTML\Game HTML\Sound Effect Itakimo Bali ahh.mp3"></audio>
+    <audio id="bodyCrashSound" src="f:\HTML\Game HTML\Yamekuda Sai 2.mp3"></audio>
+    <audio id="backgroundMusic" src="f:\HTML\Game HTML\Wagakki Band.mp3" loop></audio>
+    <audio id="purpleCrashSound" src="f:\HTML\Game HTML\Yamekuda Sai 2.mp3"></audio>
+    <audio id="blueRockSound" src="f:\HTML\Game HTML\Yamekuda Sai 3.mp3"></audio>
+    <audio id="yellowRockSound" src="f:\HTML\Game HTML\yamete kudasai 4.mp3"></audio>
+
+    <div id="volumeControls">
+        <div>
+            <label>Music Volume: </label>
+            <button id="musicDown">-</button>
+            <input type="range" id="musicVolumeSlider" min="0" max="1" step="0.1" value="1">
+            <button id="musicUp">+</button>
+        </div>
+        <div>
+            <label>Effects Volume: </label>
+            <button id="effectDown">-</button>
+            <input type="range" id="effectVolumeSlider" min="0" max="1" step="0.1" value="0.5">
+            <button id="effectUp">+</button>
+        </div>
+    </div>
+
+    <script src="f:\HTML\Game HTML\game.js"></script>
+</body>
+</html>

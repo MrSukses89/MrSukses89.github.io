@@ -1,0 +1,77 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+#game-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 392px; /* 4 * 98px, tanpa padding tambahan */
+    gap: 0; /* Hapus gap biar gak ada ruang kosong */
+    background: none; /* Hapus background hitam */
+}
+
+.puzzle-piece {
+    width: 98px;
+    height: 98px;
+    cursor: pointer;
+    background: white;
+    background-size: cover;
+    transition: all 0.2s;
+    box-sizing: border-box; /* Pastikan ukuran termasuk border */
+}
+
+.puzzle-piece:hover {
+    opacity: 0.8;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background: #222;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background: #444;
+}
+
+#win-message {
+    margin-top: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    color: green; /* Default untuk "Selamat Anda Berhasil" */
+}
+
+#win-message.wrong {
+    color: red; /* Warna merah untuk "Gambar Anda Masih Salah" */
+    font-size: 26px; /* Agak besar buat tanda seru */
+}
+
+.hidden {
+    display: none;
+}
+
+label {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+select {
+    margin-top: 5px;
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+#image-upload {
+    margin-top: 10px;
+    padding: 5px;
+}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <title>Puzzle Game</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Puzzle Game</h2>
+    <label for="image-select">Pilih Gambar:</label>
+    <select id="image-select" onchange="changeImage()">
+        <option value="1">1. Lingkaran</option>
+        <option value="2">2. Persegi</option>
+        <option value="3">3. buddha.jpg</option>
+    </select>
+    <input type="file" id="image-upload" accept="image/*" onchange="loadUploadedImage()">
+    <div id="game-container"></div>
+    <button onclick="shuffle()">Shuffle</button>
+    <button onclick="checkPuzzle()">Cek</button>
+    <div id="win-message" class="hidden"></div>
+    <script src="script.js"></script>
+</body>
+</html>

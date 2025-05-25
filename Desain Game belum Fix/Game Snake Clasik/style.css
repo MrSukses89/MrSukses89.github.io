@@ -1,0 +1,83 @@
+body {
+    font-family: sans-serif;
+    text-align: center;
+    background-color: #000000;
+    margin: 0;
+    padding: 0;
+}
+
+.canvas-container {
+    position: relative;
+    width: 600px;
+    height: 400px;
+    margin: 50px auto;
+}
+
+#gameCanvas {
+    display: block;
+    background-color: #1a1a1a; /* Latar gelap buat Snake */
+    border: 1px solid #ccc;
+}
+
+.game-overlay {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 580px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    text-align: left;
+}
+
+p {
+    margin: 5px 0;
+    color: black;
+    font-size: 20px;
+}
+
+#gameOver {
+    color: red;
+    font-weight: bold;
+}
+
+#startOptions {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+#startOptions p {
+    color: white;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+#startYesButton, #startNoButton {
+    width: 100px;
+    padding: 15px;
+    margin: 0 10px;
+    font-size: 16px;
+    display: inline-block;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#startYesButton {
+    background-color: #4CAF50;
+}
+
+#startYesButton:hover {
+    background-color: #45a049;
+}
+
+#startNoButton {
+    background-color: #d32f2f;
+}
+
+#startNoButton:hover {
+    background-color: #b71c1c;
+}

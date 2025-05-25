@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <title>Html_Mas_Andik</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: #a5bbbe;
+            width: 100%;
+            min-height: 100vh;
+            background-image: url('Background.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        h2 {
+            text-align: left;
+            color: #222222;
+            padding-left: 20px; /* Jarak dari kiri */
+        }
+
+        h1 {
+            text-align: center;
+            color: #222222;
+        }
+
+        .navbar {
+            background-color: #222222;
+            padding: 10px;
+            overflow: hidden;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            margin: 0 10px;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        .nav-button:hover {
+            background-color: #45a049;
+        }
+
+        .custom-button {
+            background-color: gold;
+            padding: 5px 30px;
+            border-radius: 25px;
+            border: 2px solid #45a049;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
+        .custom-button.green {
+            background-color: rgb(73, 170, 98);
+            border-color: green;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 10px 30px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav li {
+            margin: 5px 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #0a0a0a;
+            font-weight: bold;
+        }
+
+        /* Responsivitas */
+        @media (max-width: 768px) {
+            .nav-button {
+                padding: 8px 15px;
+                font-size: 12px;
+                margin: 0 5px;
+            }
+
+            .custom-button {
+                padding: 4px 20px;
+                margin: 0 5px;
+            }
+
+            nav ul {
+                padding: 5px 15px;
+            }
+
+            h2 {
+                padding-left: 10px; /* Jarak lebih kecil di mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar dengan link eksternal -->
+    <div class="navbar">
+        <button class="nav-button" onclick="window.open('https://www.google.com', '_blank')">Home Google</button>
+        <button class="nav-button" onclick="window.open('https://news.google.com/home?hl=id&gl=ID&ceid=ID:id', '_blank')">Google News</button>
+        <button class="nav-button" onclick="window.open('https://translate.google.com/?sl=en&tl=id&op=translate', '_blank')">Google Translate</button>
+        <button class="nav-button" onclick="window.open('https://kaltim.kemenag.go.id/', '_blank')">Kemenag Kaltim</button>
+        <button class="nav-button" onclick="window.open('https://web.whatsapp.com', '_blank')">WhatsApp Web</button>
+    </div>
+
+    <!-- Data Pribadi Mr. Andik -->
+    <h1>Data Mr. Andik</h1>
+    <nav>
+        <ul>
+            <li><button class="custom-button"><a href="CV_CPNS_2024.jpg" target="_blank">CV</a></button></li>
+            <li><button class="custom-button"><a href="3507290404900003_kartuUjianSkb.jpg" target="_blank">Data CPNS</a></button></li>
+            <li><button class="custom-button green"><a href="#">Phone (082153245087)</a></button></li>
+            <li><button class="custom-button green"><a href="#">Jabatan (Analis Kebijakan)</a></button></li>
+            <li><button class="custom-button"><a href="Paritta_Suci.pdf" target="_blank">Paritta Suci</a></button></li>
+        </ul>
+    </nav>
+
+    <!-- AI Assistant -->
+    <h1>AI Assistant</h1>
+    <nav>
+        <ul>
+            <li>
+                <button class="custom-button"><a href="https://grok.x.ai/" target="_blank">Grok AI</a></button>
+                <button class="custom-button"><a href="https://openai.com/index/chatgpt/" target="_blank">ChatGPT AI</a></button>
+                <button class="custom-button"><a href="https://gemini.google.com/app?utm_source=app_launcher&utm_medium=owned&utm_campaign=base_all" target="_blank">Gemini AI</a></button>
+                <button class="custom-button"><a href="https://www.meta.ai/" target="_blank">Meta AI</a></button>
+                <button class="custom-button"><a href="https://chat.deepseek.com/" target="_blank">DeepSeek AI</a></button>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Berita CPNS -->
+    <h1>Berita CPNS</h1>
+    <nav>
+        <ul>
+            <li>
+                <button class="custom-button"><a href="https://news.google.com/home?hl=id&gl=ID&ceid=ID:id" target="_blank">Google News</a></button>
+                <button class="custom-button" style="border-color: green;"><a href="https://kemenag.go.id/" target="_blank">Kemenag RI</a></button>
+                <button class="custom-button" style="border-color: green;"><a href="https://kemenag.go.id/buddha" target="_blank">Beranda Buddha</a></button>
+                <button class="custom-button" style="border-color: green;"><a href="https://kemenag.go.id/berita" target="_blank">Berita Kemenag RI</a></button>
+                <button class="custom-button"><a href="https://daftar-sscasn.bkn.go.id/login" target="_blank">Login SSCASN</a></button>
+                <button class="custom-button"><a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQBcB7YBFlcroApqO1lxmKMkrOmhbkmx6NugFMI17HM0Gb-aAPgB6TSxv7VB54o43hAX-tV0-cnjtXu/pubhtml#" target="_blank">Update Usul NIP CPNS 514</a></button>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Drive Saya -->
+    <h1>Drive Saya</h1>
+    <nav>
+        <ul>
+            <li>
+                <button class="custom-button"><a href="https://drive.google.com/drive/home" target="_blank">Drive Andi8Evo</a></button>
+                <button class="custom-button"><a href="https://www.terabox.com/indonesian/login/" target="_blank">TeraBox</a></button>
+                <button class="custom-button" style="border-color: green;"><a href="https://mega.nz/fm/kUpWhYoR" target="_blank">Mega Drive</a></button>
+                <button class="custom-button" style="border-color: green;"><a href="https://mail.google.com/mail/u/0/#inbox" target="_blank">Gmail.com</a></button>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Game Saya -->
+    <h1>Game Saya</h1>
+    <nav>
+        <ul>
+            <li>
+                <button class="custom-button" style="border-color: green;"><a href="Game HTML/index Game.html" target="_blank">Snake Game</a></button>
+                <button class="custom-button" style="border-color: green;"><a href="Game Tebak Angka/index.html" target="_blank">Tebak Angka</a></button>
+                <button class="custom-button" style="border-color: green;"><a href="#" target="_blank">Puzzle (Coming Soon)</a></button>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Link Saya -->
+    <h2>Link Saya</h2>
+    <ol>
+        <li><a href="#" target="_blank">Fmhy (Coming Soon)</a></li>
+        <li><a href="#" target="_blank">Yasir 252 (Coming Soon)</a></li>
+        <li><a href="#" target="_blank">Sutta Central (Coming Soon)</a></li>
+        <li><a href="#" target="_blank">Sangha Theravada Indonesia (Coming Soon)</a></li>
+        <li><a href="#" target="_blank">Microsoft (Coming Soon)</a></li>
+    </ol>
+</body>
+</html>

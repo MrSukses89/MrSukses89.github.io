@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memory Match with Images</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      background: #000;
+      position: relative;
+    }
+    #game {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      width: 100vw;
+      height: 100vh;
+      gap: 5px;
+      display: none;
+      position: relative;
+      z-index: 1;
+    }
+    .card {
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.5s;
+      cursor: pointer;
+    }
+    .card .back, .card .front {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+    }
+    .back {
+      background: #ccc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 50px;
+      color: #000;
+    }
+    .front {
+      transform: rotateY(180deg);
+    }
+    .flipped {
+      transform: rotateY(180deg);
+    }
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    #overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: white;
+      font-family: Arial, sans-serif;
+      z-index: 2;
+    }
+    #overlay button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 18px;
+      cursor: pointer;
+      background: #fff;
+      border: none;
+      border-radius: 5px;
+      color: #000;
+    }
+    #overlay button:hover {
+      background: #ddd;
+    }
+    button#noBtn {
+      background: #ff0000 !important;
+      color: #000 !important;
+    }
+    button#noBtn:hover {
+      background: #cc0000 !important;
+    }
+    button#yesBtn {
+      background: #00ff00 !important;
+      color: #000 !important;
+    }
+    button#yesBtn:hover {
+      background: #00cc00 !important;
+    }
+    .dust {
+      position: absolute;
+      background: rgba(255, 255, 255, 1);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    /* Styling caption */
+    #caption {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      font-size: 60px;
+      font-family: Arial, sans-serif;
+      border-radius: 10px;
+      z-index: 3;
+      display: none;
+      text-align: center;
+    }
+    /* Styling custom win popup */
+    #winPopup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.9);
+      color: #00ff00;
+      padding: 20px;
+      font-size: 80px;
+      font-family: Arial, sans-serif;
+      border-radius: 10px;
+      z-index: 4;
+      display: none;
+      text-align: center;
+    }
+    #winPopup button {
+      margin-top: 20px;
+      margin-left: 10px;
+      padding: 10px 20px;
+      font-size: 20px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      color: #000;
+    }
+    #winPopup #okBtn {
+      background: #ff0000;
+    }
+    #winPopup #okBtn:hover {
+      background: #cc0000;
+    }
+    #winPopup #playAgainBtn {
+      background: #00ff00;
+    }
+    #winPopup #playAgainBtn:hover {
+      background: #00cc00;
+    }
+    /* Efek ledakan */
+    .explosion {
+      position: absolute;
+      width: 30px; /* 3x dari 10px */
+      height: 30px;
+      background: #ff0000;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 3;
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div id="overlay">
+    <h2>Play Music?</h2>
+    <button id="yesBtn">Yes</button>
+    <button id="noBtn">No</button>
+  </div>
+  <div id="game"></div>
+  <div id="caption"></div>
+  <div id="winPopup">
+    <div>Menang bro!</div>
+    <button id="okBtn" onclick="closeWinPopup()">OK</button>
+    <button id="playAgainBtn" onclick="playAgain()">Ayo Main Lagi</button>
+  </div>
+  <audio id="backgroundMusic" loop>
+    <source src="memory%20match/music.mp3" type="audio/mp3">
+  </audio>
+  <audio id="matchSound">
+    <source src="memory%20match/match.mp3" type="audio/mp3">
+  </audio>
+  <audio id="noMatchSound">
+    <source src="memory%20match/nomatch.mp3" type="audio/mp3">
+  </audio>
+  <audio id="winSound">
+    <source src="memory%20match/win.mp3" type="audio/mp3">
+  </audio>
+
+  <script>
+    const game = document.getElementById('game');
+    const overlay = document.getElementById('overlay');
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
+    const audio = document.getElementById('backgroundMusic');
+    const matchSound = document.getElementById('matchSound');
+    const noMatchSound = document.getElementById('noMatchSound');
+    const winSound = document.getElementById('winSound');
+    const caption = document.getElementById('caption');
+    const winPopup = document.getElementById('winPopup');
+    const body = document.body;
+
+    const images = [
+      'memory match/buddha kecil.jpg',
+      'memory match/buddha kecil.jpg',
+      'memory match/buddha.jpg',
+      'memory match/buddha.jpg',
+      'memory match/daun boddhi.jpg',
+      'memory match/daun boddhi.jpg',
+      'memory match/empat peristiwa.jpg',
+      'memory match/empat peristiwa.jpg',
+      'memory match/flag buddhis.jpg',
+      'memory match/flag buddhis.jpg',
+      'memory match/istana.jpg',
+      'memory match/istana.jpg',
+      'memory match/roda dhamma.jpg',
+      'memory match/roda dhamma.jpg',
+      'memory match/sleep buddha.jpg',
+      'memory match/sleep buddha.jpg',
+      'memory match/telapak kaki buddha.jpg',
+      'memory match/telapak kaki buddha.jpg'
+    ];
+    let flipped = [];
+    let matched = [];
+
+    function createDust() {
+      const dust = document.createElement('div');
+      dust.classList.add('dust');
+      const size = Math.random() * 12 + 8;
+      dust.style.width = `${size}px`;
+      dust.style.height = `${size}px`;
+      dust.style.left = `${Math.random() * 100}vw`;
+      dust.style.top = `${Math.random() * 100}vh`;
+      dust.style.opacity = 1;
+      body.appendChild(dust);
+
+      function animateDust() {
+        const xMove = (Math.random() - 0.5) * 50;
+        const yMove = (Math.random() - 0.5) * 50;
+        const duration = Math.random() * 3000 + 2000;
+        dust.animate([
+          { transform: `translate(${xMove}px, ${yMove}px)` }
+        ], {
+          duration: duration,
+          easing: 'ease-in-out',
+          fill: 'forwards'
+        }).onfinish = animateDust;
+      }
+      animateDust();
+    }
+
+    for (let i = 0; i < 150; i++) {
+      createDust();
+    }
+
+    yesBtn.addEventListener('click', () => {
+      audio.play();
+      startGame();
+    });
+
+    noBtn.addEventListener('click', () => {
+      startGame();
+    });
+
+    function startGame() {
+      overlay.style.display = 'none';
+      game.style.display = 'grid';
+
+      images.sort(() => 0.5 - Math.random());
+
+      images.forEach((imgUrl, index) => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.dataset.value = imgUrl;
+
+        const back = document.createElement('div');
+        back.classList.add('back');
+        back.textContent = index + 1;
+
+        const front = document.createElement('div');
+        front.classList.add('front');
+        const img = document.createElement('img');
+        img.src = imgUrl;
+        img.onerror = () => console.log(`Gambar gagal dimuat: ${imgUrl}`);
+        img.onload = () => console.log(`Gambar berhasil dimuat: ${imgUrl}`);
+        front.appendChild(img);
+
+        card.appendChild(back);
+        card.appendChild(front);
+        card.addEventListener('click', flipCard);
+        game.appendChild(card);
+      });
+    }
+
+    function flipCard() {
+      if (flipped.length < 2 && !this.classList.contains('flipped') && !matched.includes(this)) {
+        this.classList.add('flipped');
+        flipped.push(this);
+
+        if (flipped.length === 2) {
+          setTimeout(checkMatch, 1000);
+        }
+      }
+    }
+
+    function showCaption(text, color) {
+      caption.textContent = text;
+      caption.style.color = color;
+      caption.style.display = 'block';
+      setTimeout(() => {
+        caption.style.display = 'none';
+      }, 2000);
+    }
+
+    function createExplosion() {
+      for (let i = 0; i < 50; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('explosion');
+        particle.style.left = '50vw';
+        particle.style.top = '50vh';
+
+        const colors = ['#ff0000', '#ffff00', '#ff6600'];
+        particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+        body.appendChild(particle);
+
+        const angle = Math.random() * 2 * Math.PI;
+        const distance = (Math.random() * 200 + 100) * 3; // 3x lebih jauh (300-900px)
+        const x = Math.cos(angle) * distance;
+        const y = Math.sin(angle) * distance;
+
+        particle.animate([
+          { transform: 'translate(0, 0)', opacity: 1 },
+          { transform: `translate(${x}px, ${y}px)`, opacity: 0 }
+        ], {
+          duration: 1000,
+          easing: 'ease-out',
+          fill: 'forwards'
+        }).onfinish = () => particle.remove();
+      }
+    }
+
+    function createWinDust() {
+      for (let i = 0; i < 300; i++) { // 300 dust biar penuh
+        const dust = document.createElement('div');
+        dust.classList.add('dust');
+        const size = Math.random() * 12 + 8;
+        dust.style.width = `${size}px`;
+        dust.style.height = `${size}px`;
+        dust.style.left = `${Math.random() * 100}vw`; // Nyebar ke seluruh layar
+        dust.style.top = `${Math.random() * 100}vh`;
+        dust.style.opacity = 1;
+        body.appendChild(dust);
+
+        const xMove = (Math.random() - 0.5) * 150; // Gerakan lebih jauh
+        const yMove = (Math.random() - 0.5) * 150;
+        dust.animate([
+          { transform: 'translate(0, 0)', opacity: 1 },
+          { transform: `translate(${xMove}px, ${yMove}px)`, opacity: 0 }
+        ], {
+          duration: 2000, // 2 detik biar lebih dramatis
+          easing: 'ease-out',
+          fill: 'forwards'
+        }).onfinish = () => dust.remove(); // Hapus setelah selesai
+      }
+    }
+
+    function showWinPopup() {
+      audio.pause();
+      audio.currentTime = 0;
+      winSound.play();
+      createExplosion(); // Efek ledakan besar
+      createWinDust(); // Dust penuhin layar
+      winPopup.style.display = 'block';
+    }
+
+    function closeWinPopup() {
+      winSound.pause();
+      winSound.currentTime = 0;
+      winPopup.style.display = 'none';
+    }
+
+    function playAgain() {
+      flipped = [];
+      matched = [];
+      winSound.pause();
+      winSound.currentTime = 0;
+      winPopup.style.display = 'none';
+      game.style.display = 'none';
+      game.innerHTML = '';
+      overlay.style.display = 'flex';
+    }
+
+    function checkMatch() {
+      if (flipped[0].dataset.value === flipped[1].dataset.value) {
+        matched.push(flipped[0], flipped[1]);
+        matchSound.play();
+        showCaption('Jawaban Anda Benar!!!', '#00ff00');
+        flipped = [];
+        if (matched.length === images.length) {
+          setTimeout(showWinPopup, 500);
+        }
+      } else {
+        flipped.forEach(card => card.classList.remove('flipped'));
+        noMatchSound.play();
+        showCaption('Jawaban Anda Salah!!!', '#ff0000');
+        flipped = [];
+      }
+    }
+  </script>
+</body>
+</html>

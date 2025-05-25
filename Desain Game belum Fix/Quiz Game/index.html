@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Mencocokkan Gambar dengan Garis Belok</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0e8d5;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            font-size: 64px;
+            color: #ff6b6b;
+            text-shadow: 2px 2px #fff;
+            margin: 20px 0;
+            padding: 10px 20px;
+            border: 4px solid #ffcc00;
+            border-radius: 15px;
+            background-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        #gameCanvas {
+            width: 95vw;
+            height: 85vh;
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 2px solid #ff6b6b;
+            border-radius: 10px;
+        }
+        p {
+            color: #4a2c2a;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mencocokkan Gambar dengan Garis Belok</h1>
+    <canvas id="gameCanvas"></canvas>
+    <p>Skor: <span id="score">0</span></p>
+
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+
+        // Sesuaikan ukuran canvas
+        canvas.width = window.innerWidth * 0.95;
+        canvas.height = window.innerHeight * 0.85;
+
+        // Data gambar dan pasangan (6 pasang, total 12 gambar)
+        const items = [
+            { id: 1, src: "images/1.jpg", matchId: 1, x: 0, y: 0 },
+            { id: 2, src: "images/5.jpg", matchId: 2, x: 0, y: 0 },
+            { id: 3, src: "images/3.jpg", matchId: 3, x: 0, y: 0 },
+            { id: 4, src: "images/2.jpg", matchId: 4, x: 0, y: 0 },
+            { id: 5, src: "images/6.jpg", matchId: 5, x: 0, y: 0 },
+            { id: 6, src: "images/4.jpg", matchId: 6, x: 0, y: 0 },
+            { id: 7, src: "images/1.jpg", matchId: 1, x: 0, y: 0 },
+            { id: 8, src: "images/5.jpg", matchId: 2, x: 0, y: 0 },
+            { id: 9, src: "images/3.jpg", matchId: 3, x: 0, y: 0 },
+            { id: 10, src: "images/2.jpg", matchId: 4, x: 0, y: 0 },
+            { id: 11, src: "images/6.jpg", matchId: 5, x: 0, y: 0 },
+            { id: 12, src: "images/4.jpg", matchId: 6, x: 0, y: 0 }
+        ];
+
+        const imgSize = Math.min(canvas.width / 10, canvas.height / 8);
+        let score = 0;
+        let startItem = null;
+        let currentPath = [];
+        let lines = [];
+        let fireworks = [];
+        let gameOver = false; // Status game over
+
+        // Posisikan gambar secara acak dan bertumpuk
+        items.forEach(item => {
+            let overlapping;
+            do {
+                overlapping = false;
+                item.x = Math.random() * (canvas.width - imgSize);
+                item.y = Math.random() * (canvas.height - imgSize);
+                for (let other of items) {
+                    if (other !== item && Math.abs(item.x - other.x) < imgSize * 0.8 && Math.abs(item.y - other.y) < imgSize * 0.8) {
+                        overlapping = true;
+                        break;
+                    }
+                }
+            } while (overlapping);
+        });
+
+        // Fungsi untuk menggambar gambar
+        function drawImage(item) {
+            const img = new Image();
+            img.src = item.src;
+            img.onload = () => {
+                ctx.drawImage(img, item.x, item.y, imgSize, imgSize);
+            };
+            ctx.strokeStyle = "#ffcc00";
+            ctx.lineWidth = 2;
+            ctx.strokeRect(item.x, item.y, imgSize, imgSize);
+        }
+
+        // Fungsi untuk menggambar garis belok
+        function drawPath(points, color = "#ff6b6b") {
+            if (points.length < 2) return;
+            ctx.beginPath();
+            ctx.moveTo(points[0].x, points[0].y);
+            for (let i = 1; i < points.length; i++) {
+                ctx.lineTo(points[i].x, points[i].y);
+            }
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 4;
+            ctx.stroke();
+        }
+
+        // Fungsi untuk cek persilangan dua segmen garis
+        function doLinesIntersect(p1, p2, p3, p4) {
+            const det = (p1.x - p2.x) * (p3.y - p4.y) - (p1.y - p2.y) * (p3.x - p4.x);
+            if (det === 0) return false;
+
+            const t = ((p1.x - p3.x) * (p3.y - p4.y) - (p1.y - p3.y) * (p3.x - p4.x)) / det;
+            const u = -((p1.x - p2.x) * (p1.y - p3.y) - (p1.y - p2.y) * (p1.x - p3.x)) / det;
+
+            return (t > 0 && t < 1 && u > 0 && u < 1);
+        }
+
+        // Cek apakah jalur baru bersilangan dengan garis yang sudah ada
+        function checkIntersection(newPath) {
+            for (let line of lines) {
+                const existingPoints = line.points;
+                for (let i = 0; i < newPath.length - 1; i++) {
+                    for (let j = 0; j < existingPoints.length - 1; j++) {
+                        if (doLinesIntersect(newPath[i], newPath[i + 1], existingPoints[j], existingPoints[j + 1])) {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        // Kelas partikel untuk efek ledakan
+        class Particle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 5 + 2;
+                this.speedX = Math.random() * 6 - 3;
+                this.speedY = Math.random() * 6 - 3;
+                this.life = 60;
+                this.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.life--;
+            }
+
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        // Buat ledakan di posisi tertentu
+        function createFirework(x, y) {
+            for (let i = 0; i < 30; i++) {
+                fireworks.push(new Particle(x, y));
+            }
+        }
+
+        // Gambar papan permainan
+        function drawBoard() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Gambar semua gambar
+            items.forEach(item => drawImage(item));
+
+            // Gambar garis yang sudah selesai
+            lines.forEach(line => drawPath(line.points));
+
+            // Gambar garis sementara saat menggambar
+            if (currentPath.length > 0 && !gameOver) {
+                drawPath(currentPath, "#ff6b6b80");
+            }
+
+            // Pesan kemenangan
+            if (lines.length === items.length / 2 && !gameOver) {
+                ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = "#ff6b6b";
+                ctx.textAlign = "center";
+
+                const winText = "Selamat Menang Bro!";
+                const scoreText = "Skor: " + score;
+                ctx.font = "60px Arial";
+                const winTextWidth = ctx.measureText(winText).width;
+                ctx.font = "40px Arial";
+                const scoreTextWidth = ctx.measureText(scoreText).width;
+                const maxTextWidth = Math.max(winTextWidth, scoreTextWidth);
+                const frameWidth = maxTextWidth + 40;
+                const frameHeight = 140;
+                const frameX = canvas.width / 2 - frameWidth / 2;
+                const frameY = canvas.height / 2 - frameHeight / 2;
+
+                ctx.strokeStyle = "#ffcc00";
+                ctx.lineWidth = 4;
+                ctx.strokeRect(frameX, frameY, frameWidth, frameHeight);
+                ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+                ctx.fillRect(frameX, frameY, frameWidth, frameHeight);
+
+                ctx.fillStyle = "#ff6b6b";
+                ctx.font = "60px Arial";
+                ctx.fillText(winText, canvas.width / 2, canvas.height / 2 - 10);
+                ctx.font = "40px Arial";
+                ctx.fillText(scoreText, canvas.width / 2, canvas.height / 2 + 50);
+
+                fireworks.forEach((particle, index) => {
+                    particle.update();
+                    particle.draw();
+                    if (particle.life <= 0) fireworks.splice(index, 1);
+                });
+            }
+
+            // Pesan Game Over
+            if (gameOver) {
+                ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = "#ff6b6b";
+                ctx.textAlign = "center";
+
+                const overText = "Game Over Bro!";
+                const scoreText = "Skor: " + score;
+                ctx.font = "60px Arial";
+                const overTextWidth = ctx.measureText(overText).width;
+                ctx.font = "40px Arial";
+                const scoreTextWidth = ctx.measureText(scoreText).width;
+                const maxTextWidth = Math.max(overTextWidth, scoreTextWidth);
+                const frameWidth = maxTextWidth + 40;
+                const frameHeight = 140;
+                const frameX = canvas.width / 2 - frameWidth / 2;
+                const frameY = canvas.height / 2 - frameHeight / 2;
+
+                ctx.strokeStyle = "#ffcc00";
+                ctx.lineWidth = 4;
+                ctx.strokeRect(frameX, frameY, frameWidth, frameHeight);
+                ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+                ctx.fillRect(frameX, frameY, frameWidth, frameHeight);
+
+                ctx.fillStyle = "#ff6b6b";
+                ctx.font = "60px Arial";
+                ctx.fillText(overText, canvas.width / 2, canvas.height / 2 - 10);
+                ctx.font = "40px Arial";
+                ctx.fillText(scoreText, canvas.width / 2, canvas.height / 2 + 50);
+            }
+        }
+
+        // Cek apakah klik di dalam gambar
+        function getClickedItem(x, y) {
+            return items.find(item => 
+                x >= item.x && x <= item.x + imgSize && 
+                y >= item.y && y <= item.y + imgSize
+            );
+        }
+
+        // Event mouse
+        let isDrawing = false;
+
+        canvas.addEventListener("mousedown", (e) => {
+            if (gameOver) return; // Hentikan interaksi saat game over
+            const rect = canvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const item = getClickedItem(x, y);
+
+            if (item && !lines.some(line => line.start === item || line.end === item)) {
+                startItem = item;
+                currentPath = [{ x: item.x + imgSize / 2, y: item.y + imgSize / 2 }];
+                isDrawing = true;
+            }
+        });
+
+        canvas.addEventListener("mousemove", (e) => {
+            if (gameOver) return; // Hentikan interaksi saat game over
+            if (isDrawing) {
+                const rect = canvas.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                currentPath.push({ x, y });
+                drawBoard();
+            }
+        });
+
+        canvas.addEventListener("mouseup", (e) => {
+            if (gameOver) return; // Hentikan interaksi saat game over
+            if (isDrawing) {
+                const rect = canvas.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const endItem = getClickedItem(x, y);
+
+                if (endItem && startItem !== endItem && startItem.matchId === endItem.matchId && 
+                    !lines.some(line => line.start === endItem || line.end === endItem)) {
+                    if (checkIntersection(currentPath)) {
+                        gameOver = true; // Game over jika garis bersilangan
+                    } else {
+                        lines.push({ start: startItem, end: endItem, points: currentPath });
+                        score += 20;
+                        document.getElementById("score").textContent = score;
+
+                        if (lines.length === items.length / 2) {
+                            createFirework(canvas.width / 4, canvas.height / 4);
+                            createFirework(3 * canvas.width / 4, canvas.height / 4);
+                            createFirework(canvas.width / 2, 3 * canvas.height / 4);
+                            animateFireworks();
+                        }
+                    }
+                }
+
+                isDrawing = false;
+                currentPath = [];
+                startItem = null;
+                drawBoard();
+            }
+        });
+
+        // Animasi ledakan (hanya untuk kemenangan)
+        function animateFireworks() {
+            requestAnimationFrame(animateFireworks);
+            drawBoard();
+        }
+
+        // Sesuaikan ukuran canvas saat window diresize
+        window.addEventListener("resize", () => {
+            canvas.width = window.innerWidth * 0.95;
+            canvas.height = window.innerHeight * 0.85;
+            imgSize = Math.min(canvas.width / 10, canvas.height / 8);
+            items.forEach(item => {
+                let overlapping;
+                do {
+                    overlapping = false;
+                    item.x = Math.random() * (canvas.width - imgSize);
+                    item.y = Math.random() * (canvas.height - imgSize);
+                    for (let other of items) {
+                        if (other !== item && Math.abs(item.x - other.x) < imgSize * 0.8 && Math.abs(item.y - other.y) < imgSize * 0.8) {
+                            overlapping = true;
+                            break;
+                        }
+                    }
+                } while (overlapping);
+            });
+            drawBoard();
+        });
+
+        // Mulai game
+        drawBoard();
+    </script>
+</body>
+</html>

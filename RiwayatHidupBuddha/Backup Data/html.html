@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riwayat Hidup Buddha Gotama - Sekolah Minggu Buddha</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Comic Sans MS', Arial, sans-serif;
+            background-color: #f0e8d5;
+            color: #4a2c2a;
+            background-image: url('buddha-bg.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        body.no-scroll {
+            overflow: hidden;
+        }
+        .container {
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+            position: relative;
+        }
+        h1 {
+            color: #ff6b6b;
+            text-shadow: 2px 2px #fff;
+            font-size: clamp(24px, 5vw, 40px);
+            margin-bottom: 20px;
+        }
+        .button-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: flex-start;
+            max-width: 200px;
+            padding-left: 20px;
+            max-height: 100%;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #ffcc00 #fff;
+        }
+        .button-group::-webkit-scrollbar {
+            width: 8px;
+        }
+        .button-group::-webkit-scrollbar-track {
+            background: #fff;
+        }
+        .button-group::-webkit-scrollbar-thumb {
+            background-color: #ffcc00;
+            border-radius: 10px;
+        }
+        .btn {
+            background-color: #ffcc00;
+            color: #4a2c2a;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 15px;
+            font-size: clamp(14px, 2.5vw, 18px);
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.2s;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            text-align: left;
+        }
+        .btn:hover {
+            background-color: #e6b800;
+            transform: scale(1.05);
+        }
+        .btn:active {
+            transform: scale(0.95);
+        }
+        .btn.active {
+            background-color: #e6b800;
+        }
+        .btn-ulangan {
+            background-color: #4a90e2; /* Warna biru cerah */
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 20px;
+            border-radius: 15px;
+            font-size: clamp(14px, 2.5vw, 18px);
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.2s;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-ulangan .icon {
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+        .btn-ulangan:hover {
+            background-color: #357abd;
+            transform: scale(1.05);
+        }
+        .btn-ulangan:hover .icon {
+            transform: scale(1.2);
+        }
+        .btn-ulangan:active {
+            transform: scale(0.95);
+        }
+        .content-area {
+            flex: 3;
+            position: relative;
+            height: 100%;
+        }
+        .section {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            font-size: clamp(14px, 2vw, 18px);
+            line-height: 1.5;
+            background-color: #fff;
+            border-radius: 10px;
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+        }
+        .section.active {
+            display: flex;
+            opacity: 1;
+        }
+        .section h2 {
+            color: #ff6b6b;
+            font-size: clamp(18px, 4vw, 24px);
+            margin-bottom: 10px;
+        }
+        .section img {
+            max-width: 55%;
+            height: auto;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .section .text-content {
+            flex: 1;
+            text-align: left;
+        }
+        .section p {
+            margin: 10px 0;
+        }
+        .fullscreen-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
+        }
+        .fullscreen-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+        .fullscreen-overlay img, .fullscreen-overlay video {
+            max-width: 80%;
+            max-height: 60vh;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .fullscreen-overlay p {
+            color: #fff;
+            font-size: clamp(16px, 4vw, 24px);
+            margin: 0 20px;
+        }
+        .fullscreen-overlay .back-btn {
+            background-color: #ff6b6b;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.2s;
+        }
+        .fullscreen-overlay .back-btn:hover {
+            background-color: #e65a5a;
+        }
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                padding: 10px;
+            }
+            .button-group {
+                flex-direction: row;
+                flex-wrap: wrap;
+                max-width: none;
+                justify-content: center;
+                align-items: center;
+                padding-left: 0;
+                max-height: 20%;
+                overflow-x: auto;
+                overflow-y: hidden;
+            }
+            .btn, .btn-ulangan {
+                flex: 1 1 150px;
+                text-align: center;
+                padding: 10px;
+            }
+            .section {
+                flex-direction: column;
+                padding: 15px;
+            }
+            .section img {
+                max-width: 80%;
+            }
+            .section .text-content {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="button-group">
+            <h1>Riwayat Hidup Buddha Gotama</h1>
+            <button class="btn active" data-section="introducing" onclick="showSection('introducing')" aria-label="Lihat bagian Introducing">Introducing</button>
+            <button class="btn" data-section="kerajaan" onclick="showSection('kerajaan')" aria-label="Lihat bagian Masa Berkeluarga">1. Masa Berkeluarga</button>
+            <button class="btn" data-section="silsilah" onclick="showSection('silsilah')" aria-label="Lihat bagian Silsilah Raja">2. Silsilah Raja</button>
+            <button class="btn" data-section="kerajaanKapila" onclick="showSection('kerajaanKapila')" aria-label="Lihat bagian Kerajaan Kapilavatthu">3. Kerajaan Kapilavatthu</button>
+            <button class="btn" data-section="mimpiRatu" onclick="showSection('mimpiRatu')" aria-label="Lihat bagian Mimpi Ratu Māyā">4. Mimpi Ratu Māyā</button>
+            <button class="btn" data-section="kelahiranPangeran" onclick="showSection('kelahiranPangeran')" aria-label="Lihat bagian Kelahiran Pangeran">5. Kelahiran Pangeran</button>
+            <button class="btn" data-section="ucapanPangeran" onclick="showSection('ucapanPangeran')" aria-label="Lihat bagian Ucapan Pangeran Kecil">6. Ucapan Pangeran Kecil</button>
+            <button class="btn" data-section="empatPeristiwa" onclick="showSection('empatPeristiwa')" aria-label="Lihat bagian Empat Peristiwa">7. Empat Peristiwa</button>
+            <button class="btn" data-section="pestaRamalan" onclick="showSection('pestaRamalan')" aria-label="Lihat bagian Pesta & Ramalan">8. Pesta & Ramalan</button>
+            <a href="Ulangan Kelas Part 1/Game Tebak Agka/index.html" class="btn-ulangan" target="_blank" aria-label="Buka halaman Ulangan Kelas">
+                <span class="icon">📝</span>Tebak Angka
+            </a>
+            <a href="Ulangan Kelas Part 1/memory match/index.html" class="btn-ulangan" target="_blank" aria-label="buka halaman ulangan kelas">
+                <span class="icon">📝</span> Memory Match
+            </a>
+            <button class="btn" data-section="mencapaiBuddha" onclick="showSection('mencapaiBuddha')" aria-label="Lihat bagian Mencapai Buddha">Mencapai Buddha</button>
+            <button class="btn" data-section="ajaranBuddha" onclick="showSection('ajaranBuddha')" aria-label="Lihat bagian Ajaran Buddha">Ajaran Buddha</button>
+            <button class="btn" data-section="tambahan" onclick="showSection('tambahan')" aria-label="Lihat bagian Tambahan">Tambahan</button>
+           
+        </div>
+
+        <div class="content-area">
+            <div id="introducing" class="section active">
+                <img src="images/introducing.jpg" alt="Introducing" onclick="showFullScreen('introducing')">
+                <div class="text-content">
+                    <h2>Introducing</h2>
+                    <p>1. Media Belajar Riwayat Hidup Buddha Gotama.</p>
+                    <p>2. Media Belajar ini Boleh Dimodifikasi sesuai kebutuhan belajar Umat Buddha, misalnya Sekolah Minggu atau Puja Bakti Umum.</p>
+                    <p>3. Cara mengubah ataupun menambah text dan gambar yaitu menggunakan Software Visual Studio Code dengan Bahasa (Html, Java Script dan Css).</p>
+                    <p>4. Semoga kita selalu maju di dalam Dhamma</p>
+                    <p>Salam dari saya Sri Andik Cahyono. S.Pd.B</p>
+                </div>
+            </div>
+            <div id="kerajaan" class="section">
+                <img src="images/kerajaan.jpg" alt="Kerajaan Sakka" onclick="showFullScreen('kerajaan')">
+                <div class="text-content">
+                    <h2>Kerajaan Sakka</h2>
+                    <p>1. Pada Zaman dahulu kala ada sebuah Kerajaan bernama Kerajaan Sakka dan Rajanya bernama Okkaka, beliau adalah Raja awal yang memerintah. Nama kerajaan terinspirasi dari Banyak Pohon Sakka di tempat tersebut.</p>
+                    <p>2. Raja Okkaka memiliki 4 putra & 5 Putri, kemudian ratu meninggal dan Raja Menikah lagi.</p>
+                    <p>3. Dari pernikahan barunya sang Raja dikaruniai seorang Putra, karena senang raja akan mengabulkan semua permintaan Ratu.</p>
+                    <p>4. Ratu yang baru meminta anaknya kelak menjadi raja, karena sebab itulah 4 pangeran dan 5 putri di minta pergi untuk membuat kerajaan baru.</p>
+                </div>
+            </div>
+            <div id="silsilah" class="section">
+                <img src="images/silsilah.jpg" alt="Silsilah" onclick="showFullScreen('silsilah')">
+                <div class="text-content">
+                    <h2>Silsilah Raja hingga Pangeran Siddhartha</h2>
+                    <p>1. Kerajaan Sakka diperintan oleh Raja Okkaka</p>
+                    <p>2. Raja Okkaka (Kerajaan Sakka) - Kerajaan Kapilavatthu ; Raja Jayasena - Raja Sihahanu - Raja Suddhodana - Pangeran Siddhartha</p>
+                </div>
+            </div>
+            <div id="kerajaanKapila" class="section">
+                <img src="images/kerajaanKapila.jpg" alt="Kerajaan Kapilavatthu" onclick="showFullScreen('kerajaanKapila')">
+                <div class="text-content">
+                    <h2>Kerajaan Kapilavatthu</h2>
+                    <p>1. Empat Pangeran Pendiri Kerajaan Kapilavatthu ; Okkakamuka, karanda, Hatthinika, dan Sinipura Berserta 5 putri.</p>
+                    <p>2. Makna Kapilavatthu adalah adanya Seorang Pertapa Bernama Kapila & Vatthu adalah tempat.</p>
+                    <p>3. Ketika Raja Suddhodana naik tahta menjadi Raja, Beliau menikah dengan Ratu Maya (Maha Maya), dari pernikahan ini dikarunia seorang putra bernama Siddhartha yang artinya tercapailah segala cita-citanya.</p>
+                </div>
+            </div>
+            <div id="mimpiRatu" class="section">
+                <img src="images/mimpi ratu.jpg" alt="Mimpi Ratu" onclick="showFullScreen('mimpiRatu')">
+                <div class="text-content">
+                    <h2>Mimpi Ratu Māyā</h2>
+                    <p>1. Ratu Maya saat itu sudah berusia 45 tahun, namun belum memiliki keturunan. pada saat itulah ada perayaan Asalha berlangsung 7 hari. Setelah perayaan selesai, Ratu Mandi dengan air wangi, mengucapkan janji Uposatha dan pergi tidur.</p>
+                    <p>2. Di waktu tidur Ratu Maya Bermimpi ada 4 dewa agung membawa ke gunung Himava (Himalaya) dan meletakkannya di bawah pohon sala di (lereng) Manosilatala kemudian ratu dimandikan oleh 4 istri dewa tadi di danau Anotatta, menggosokan minyak wangi, memakaikan pakaian dewa.</p>
+                    <p>3. Ratu dipimpin masuk ke sebuah istana emas dan di rebahkan di dipan yang bagus</p>
+                    <p>4. Seekor gajah putih membawa sekuntum bunga terai memasuki ruangan dan berpradaksina mengelilingi ratu sebanyak 3x, kemudian memasuki perut Ratu Maya dari sebelah kanan.</p>
+                    <h2>Makna Mimpi Ratu Maya</h2>
+                    <p>1. Para Brahmana mengatakan bahwa Ratu Maya akan mengandung anak laki-laki yang kelak akan menjadi seorang Cakkavati (raja dari semua raja) atau menjadi seorang Buddha.</p>
+                </div>
+            </div>
+            <div id="kelahiranPangeran" class="section">
+                <img src="images/kelahiranPangeran.jpg" alt="Kelahiran Pangeran" onclick="showFullScreen('kelahiranPangeran')">
+                <div class="text-content">
+                    <h2>Masa Kecil</h2>
+                    <p>1. Ratu Maya hendak Bersalin di Devadaha, tibalah di taman Lumbini untuk Istirahat dan berjalan-jalan.</p>
+                    <p>2. Ratu berhenti di pohon Sala, pada saat itu Ratu maya merasa tidak enak di perutnya, para dayang membuat tirai pelindung.</p>
+                    <p>3. Ratu dalam sikap berdiri berpegangan di salah satu dahan pohon Sala, dalam posisi tsb Ratu melahirkan bayi laki-laki.</p>
+                    <p>4. Pada waktu itu tepat purnama sidhi di bulan Vaisak tahun 623 SM</p>
+                    <h2>Disambut Oleh Dewa</h2>
+                    <p>1. Empat Maha Brahma menerima Sang Bayi dengan jala Emas, kemudian dari langit turun air dingin dan panas untuk memandikan sang bayi supaya menjadi segar dan bersih dari Noda.</p>
+                    <p>2. bayi itu kemudian berdiri tegak dan berjalan 7 langkah diatas tujuh kuntum bunga teratai ke arah utara.</p>
+                </div>
+            </div>
+            <div id="ucapanPangeran" class="section">
+                <img src="images/ucapanPangeran.jpg" alt="Ucapan Pangeran" onclick="showFullScreen('ucapanPangeran')">
+                <div class="text-content">
+                    <h2>Ucapan Pangeran Kecil</h2>
+                    <p>"Aggo 'haṁ asmi Lokassa, | Akulah Pemimpin di dunia ini,</p>
+                    <p>jettho 'haṁ asmi lokassa, | Akulah tertua di dunia ini,</p>
+                    <p>settho 'haṁ asmi lokassa, | Akulah Teragung di dunia ini,</p>
+                    <p>ayaṁ antimā jāti, Inilah, | Kelahiranku yang terakhir,</p>
+                    <p>nathi dāni punabbhavo. | Tak Akan ada tumimbal lahir lagi.</p>
+                    <h2>Pertapa Asita / Kaladevala</h2>
+                    <p>1. Seorang pertapa bernama Asita (kaladevala) sewaktu bermeditasi di Pegunungan Himalaya, di beritahu oleh para dewa dari alam Tavatimsa bahwa seorang bayi telah lahir kelak akan menjadi Buddha.</p>
+                    <p>2. Setelah melihat Sang Bayi yang memiliki 32 tanda Mahapurisa, pertapa memberi hormat di ikuti oleh Raja.</p>
+                    <p>3. Pertapa Asita tertawa lalu Menangis (bayi ini akan menjadi buddha, namun dia tidak sempat mebelajar ajarannya karena usianya).</p>
+                </div>
+            </div>
+            <div id="empatPeristiwa" class="section">
+                <img src="images/empatPeristiwa.jpg" alt="Empat Peristiwa" onclick="showFullScreen('empatPeristiwa')">
+                <div class="text-content">
+                    <h2>Empat Peristiwa</h2>
+                    <p>1. Ketika pertapa Asita berkunjung melihat Pangeran Siddharta di istana beliau berpesan bahwa Pangeran tidak boleh melihat Empat Peristiwa yaitu;</p>
+                    <p>Orang Tua</p>
+                    <p>Orang Sakit</p>
+                    <p>Orang Meninggal</p>
+                    <p>Pertapa Suci</p>
+                    <p>2. Jika pangeran melihat Empat Peritiwa tersebut, maka Pangeran akan meninggalkan Istana, bertapa dan menjadi Buddha.</p>
+                    <h2>Pada hari yang sama lahir (timbul) pula dalam dunia ini</h2>
+                    <p>1. Puteri Yasodharā /Rāhulamātā (ibu dari Rāhula).</p>
+                    <p>2. Ānanda, yang kelak menjadi pembantu tetap Sang Buddha.</p>
+                    <p>3. Kanthaka, yang kelak menjadi kudaPangeran Siddhartha.</p>
+                    <p>4. Channa, yang kelak akan menjadi kusir Pangeran Siddharta</p>
+                    <p>5. Kāludāyī, yang kelak mengundang Sang Buddha untuk berkunjung kembali ke Kapilavatthu.</p>
+                    <p>6. Seekor Gajah Istana.</p>
+                    <p>7. Pohon Boddhi, di bawah pohon ini Pangeran Siddharta kelak mendapatkan enerangan Agung.</p>
+                    <p>8. Nindhikumbhi, kendi tempat harta pusaka.</p>
+                </div>
+            </div>
+            <div id="pestaRamalan" class="section">
+                <img src="images/pestaRamalan.jpg" alt="Pesta dan Ramalan" onclick="showFullScreen('pestaRamalan')">
+                <div class="text-content">
+                    <h2>Pesta dan Ramalan</h2>
+                    <p>1. lima hari setelah Pangeran lahir, Raja suddhodana sanak saudaranya berkumpul, bersama-sama dengan 108 orang Brahmana untuk merayakan kelahiran anak pertamanya dan memilih nama yang baik.</p>
+                    <p>2. Delapan orang Brahmana yang mahir dalam meramal nasib, yaitu; Ramā, Dhaja, Lakkhana, Mantī, Kondañña, Bhoja, Suyama, dan Sudatta.</p>
+                    <p>3. Kondañña pertapa muda yang dengan pasti mengatakan, Pangeran akan menjadi Buddha.</p>
+                    <p>4. Nama yang kemudian di pilih adalah Siddharta (Siddhattha), yang artinya Tercapailah segala cita-citanya.</p>
+                    <p>5. Tujuh Hari setelah Pangeran Siddharta dilahirkan, Ratu Māyā meninggal dunia dan terlahir di Surga Tusita.</p>
+                    <p>6. Raja Suddhodana menyerahkan perawatan pangeran kepada Puteri Pajāpatī (adik dari Ratu Māyā), yang juga dinikahinya.</p>
+                    <p>7. Dari pernikahan ini lahir Seorang Putra yaitu Nanda dan puteri Rūpanandā</p>
+                </div>
+            </div>
+            <div id="mencapaiBuddha" class="section">
+                <img src="images/mencapaiBuddha.jpg" alt="Siddharta di Bawah Pohon Bodhi" onclick="showFullScreen('mencapaiBuddha')">
+                <div class="text-content">
+                    <h2>Mencapai Buddha</h2>
+                    <p>Setelah bermeditasi di bawah Pohon Bodhi selama 49 hari...</p>
+                </div>
+            </div>
+            <div id="ajaranBuddha" class="section">
+                <img src="images/rodaDhamma.jpg" alt="Roda Dhamma - Simbol Ajaran Buddha" onclick="showFullScreen('ajaranBuddha')">
+                <div class="text-content">
+                    <h2>Ajaran Buddha</h2>
+                    <p>Buddha mengajarkan Empat Kebenaran Mulia dan Jalan Mulia Berunsur Delapan...</p>
+                </div>
+            </div>
+            <div id="tambahan" class="section">
+                <img src="#" alt="Tambahan" onclick="showFullScreen('tambahan')">
+                <div class="text-content">
+                    <h2>Tambahan</h2>
+                    <p>Penjelasan tambahan ada di sini</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fullscreen Overlays -->
+    <div id="fullscreen-introducing" class="fullscreen-overlay">
+        <video width="80%" controls poster="images/poster.jpg">
+            <source src="videos/introducing.mp4" type="video/mp4">
+            Browser Anda tidak mendukung tag video.
+        </video>
+        <p>Penjelasan di sini</p>
+        <button class="back-btn" onclick="hideFullScreen('introducing')" aria-label="Kembali ke halaman utama">Back</button>
+    </div>
+    <div id="fullscreen-kerajaan" class="fullscreen-overlay">
+        <img src="images/kerajaan.jpg" alt="Kerajaan Sakka">
+        <p>Pada Zaman dahulu kala ada sebuah Kerajaan bernama Kerajaan Sakka...</p>
+        <button class="back-btn" onclick="hideFullScreen('kerajaan')" aria-label="Kembali ke halaman utama">Back</button>
+    </div>
+    <!-- Tambahkan overlay lain sesuai kebutuhan -->
+</body>
+<script>
+    function showSection(sectionId) {
+        const sections = document.querySelectorAll('.section');
+        const buttons = document.querySelectorAll('.btn');
+        sections.forEach(section => section.classList.remove('active'));
+        buttons.forEach(btn => btn.classList.remove('active'));
+        document.getElementById(sectionId).classList.add('active');
+        document.querySelector(`[data-section="${sectionId}"]`).classList.add('active');
+    }
+
+    function showFullScreen(sectionId) {
+        const overlay = document.getElementById(`fullscreen-${sectionId}`);
+        if (overlay) {
+            overlay.classList.add('active');
+            document.body.classList.add('no-scroll');
+        }
+    }
+
+    function hideFullScreen(sectionId) {
+        const overlay = document.getElementById(`fullscreen-${sectionId}`);
+        if (overlay) {
+            overlay.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+        }
+    }
+</script>
+</html>

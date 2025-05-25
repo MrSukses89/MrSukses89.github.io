@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Snake Classic</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="canvas-container" style="display: none;">
+        <canvas id="gameCanvas" width="600" height="400"></canvas>
+        <div class="game-overlay">
+            <p id="score">Score: 0</p>
+            <p id="gameOver" style="display: none;">Game Over! Tekan Enter untuk main lagi</p>
+        </div>
+    </div>
+    <!-- Kontainer untuk tombol Yes/No -->
+    <div id="startOptions">
+        <p>Main dengan musik?</p>
+        <button id="startYesButton">Yes</button>
+        <button id="startNoButton">No</button>
+    </div>
+    <!-- Elemen audio untuk musik latar -->
+    <audio id="backgroundMusic" loop>
+        <source src="music.mp3" type="audio/mpeg">
+        Browser kamu nggak support audio.
+    </audio>
+    <!-- Elemen audio untuk suara makan -->
+    <audio id="eatSound">
+        <source src="eat.mp3" type="audio/mpeg">
+        Browser kamu nggak support audio.
+    </audio>
+    <!-- Elemen audio untuk suara game over -->
+    <audio id="gameOverSound">
+        <source src="gameover.mp3" type="audio/mpeg">
+        Browser kamu nggak support audio.
+    </audio>
+    <script src="script.js"></script>
+</body>
+</html>

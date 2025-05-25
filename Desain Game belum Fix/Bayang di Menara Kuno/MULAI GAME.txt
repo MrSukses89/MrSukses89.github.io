@@ -1,0 +1,25 @@
+MULAI GAME
+  SET karakter = "Kael"
+  SET lokasi = "Tepi Hutan"
+  SET item = ["kalung", "pedang"]
+  
+  TAMPILKAN: "Kael berdiri di tepi hutan. Menara kuno terlihat jauh. Ada jembatan reyot dan jalur samping."
+  TAMPILKAN PILIHAN:
+    1. Lewat jembatan
+    2. Ambil jalur samping
+    3. Periksa kalung
+  
+  INPUT pilihan dari pemain
+  
+  JIKA pilihan = 1:
+    SET lokasi = "Jembatan"
+    TAMPILKAN: "Jembatan berderit keras. Tiba-tiba tali putus! Kael jatuh ke sungai."
+    PANGGIL fungsi "sungai"
+  JIKA pilihan = 2:
+    SET lokasi = "Jalur Samping"
+    TAMPILKAN: "Kael menemukan jejak aneh di lumpur. Ada suara dari semak."
+    PANGGIL fungsi "semak"
+  JIKA pilihan = 3:
+    TAMPILKAN: "Kalung Kael bersinar samar. Ada suara bisikan: 'Ke menara...'"
+  
+SELESAI

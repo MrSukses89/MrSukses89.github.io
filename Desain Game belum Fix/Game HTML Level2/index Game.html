@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game</title>
+    <link rel="stylesheet" href="f:\HTML\Game HTML\NaavCSS.css">
+</head>
+<body>
+    <!-- Navigasi -->
+    <nav class="beautiful-nav">
+        <ul>
+            <li><a href="#" class="nav-button" onclick="startGame()">Start Game</a></li>
+            <li><a href="#" class="nav-button" onclick="pauseGame()">Pause</a></li>
+            <li><a href="#" class="nav-button" onclick="resetGame()">Reset</a></li>
+            <li><a href="#" class="nav-button" onclick="toggleMusic()">Toggle Music</a></li>
+            <li><a href="#" class="nav-button">How to Play</a></li>
+        </ul>
+    </nav>
+
+    <!-- Elemen untuk menampilkan skor -->
+    <div class="score-display">
+        <p>Skor: <span id="scoreText">0</span></p>
+    </div>
+
+    
+    <canvas id="gameCanvas" width="1080" height="600"></canvas>
+    <!-- Audio elements -->
+    <audio id="eatSound" src="f:\HTML\Game HTML\ahh!! sound effect.mp3"></audio>
+    <audio id="crashSound" src="f:\HTML\Game HTML\Sound Effect Itakimo Bali ahh.mp3"></audio>
+    <audio id="bodyCrashSound" src="f:\HTML\Game HTML\Yamekuda Sai 2.mp3"></audio>
+    <audio id="backgroundMusic" src="f:\HTML\Game HTML\Wagakki Band.mp3"loop></audio>
+    <script src="f:\HTML\Game HTML\game.js"></script> // sumber game nya.
+</body>
+</html>

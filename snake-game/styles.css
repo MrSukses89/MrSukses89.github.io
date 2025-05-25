@@ -1,0 +1,214 @@
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Styling untuk navigasi */
+.beautiful-nav {
+    margin: 20px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.beautiful-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.beautiful-nav ul li {
+    display: inline-block;
+}
+
+.nav-button {
+    text-decoration: none;
+    color: #ffffff;
+    background: linear-gradient(135deg, #ff6b6b, #feca57);
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border: none;
+    cursor: pointer;
+}
+
+.nav-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.nav-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: 0.5s;
+}
+
+.nav-button:hover::before {
+    left: 100%;
+}
+
+/* Styling untuk skor */
+.score-display {
+    margin: 10px 0;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #ff6b6b, #feca57);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.score-display p {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Styling canvas */
+#gameCanvas {
+    border: 2px solid #ffffff;
+    background-color: #000000;
+    border-radius: 10px;
+}
+
+/* Styling untuk petunjuk */
+#howToPlayText {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, #1a1a1a 0%, #4a2c5f 100%);
+    color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 80%;
+    max-height: 80%;
+    overflow: auto;
+    z-index: 1000;
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+    border: 3px solid #00ff00;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.7);
+    transition: all 0.3s ease;
+}
+
+#howToPlayText h2 {
+    color: #ff4444;
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#howToPlayText pre {
+    white-space: pre-wrap;
+    line-height: 1.5;
+    color: #e0e0e0;
+}
+
+#howToPlayText button {
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#howToPlayText button:hover {
+    background-color: #cc3333;
+    transform: scale(1.05);
+}
+
+#howToPlayText button:active {
+    transform: scale(0.95);
+}
+
+/* Styling untuk volume controls */
+#volumeControls {
+    position: absolute;
+    top: 10px;
+    left: 200px;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+#volumeControls label {
+    font-size: 16px;
+}
+
+#volumeControls input[type="range"] {
+    width: 100px;
+}
+
+#volumeControls button {
+    padding: 5px 10px;
+    background-color: #00ff00;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#volumeControls button:hover {
+    background-color: #00cc00;
+    transform: scale(1.1);
+}
+
+#volumeControls button:active {
+    transform: scale(0.9);
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    .beautiful-nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .score-display p {
+        font-size: 20px;
+    }
+
+    #volumeControls {
+        left: 10px;
+    }
+}

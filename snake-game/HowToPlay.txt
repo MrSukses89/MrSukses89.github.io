@@ -1,0 +1,10 @@
+How to Play Snake Game:
+1. Gunakan tombol panah (Arrow Keys) untuk menggerakkan ular.
+2. Makan makanan merah untuk menambah skor dan membuat ular bertambah panjang.
+3. Hindari menabrak batu abu-abu, dinding, atau tubuh ular sendiri.
+4. Makan batu biru untuk meningkatkan kecepatan menjadi 20.
+5. Makan batu ungu untuk meningkatkan kecepatan menjadi 25.
+6. Makan batu kuning untuk mengembalikan kecepatan ke normal (14).
+7. Tekan "M" untuk mute/unmute musik latar.
+8. Tekan "Enter" untuk memulai ulang setelah game over.
+Selamat bermain!

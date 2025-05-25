@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Riwayat Hidup Buddha Gotama
+    </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="button-group">
+            <h1>
+                Riwayat Hidup Buddha Gotama
+            </h1>
+
+            <button class="btn active" data-section="introduction" onclick="showSection('introduction')">
+                Introdution
+            </button>
+            
+            <button class="btn" data-section="dhammapada" onclick="showSection('dhammapada')">
+                Dhammapada Syair  1
+            </button>
+            <button class="btn" data-section="dhammapada2" onclick="showSection('dhammapada2')" aria-label="lihat dhammapada2">Dhammapada Syair 2</button>
+            <a href="https://www.sariputta.com/dhammapada/1/cerita-kisah-cakkhupala-thera" class="btn-ulangan" target="_blank" aria-label="buka halaman sejarah dhammapada">
+                <span class="icon">📝</span>Link Sejarah Dhammapada
+            </a>
+            <button class="btn" data-section="kerajaan" onclick="showSection('kerajaan')" aria-label="Lihat bagian Masa Berkeluarga">1. Masa Berkeluarga</button>
+            <button class="btn" data-section="silsilah" onclick="showSection('silsilah')" aria-label="Lihat bagian Silsilah Raja">2. Silsilah Raja</button>
+            <button class="btn" data-section="kerajaanKapila" onclick="showSection('kerajaanKapila')" aria-label="Lihat bagian Kerajaan Kapilavatthu">3. Kerajaan Kapilavatthu</button>
+            <button class="btn" data-section="mimpiRatu" onclick="showSection('mimpiRatu')" aria-label="Lihat bagian Mimpi Ratu Māyā">4. Mimpi Ratu Māyā</button>
+            <button class="btn" data-section="kelahiranPangeran" onclick="showSection('kelahiranPangeran')" aria-label="Lihat bagian Kelahiran Pangeran">5. Kelahiran Pangeran</button>
+            <button class="btn" data-section="pohonBuddhis" onclick="showSection('pohonBuddhis')" aria-label="Lihat bagian pohon buddhis">6. Pohon Berciri Buddhis</button>
+            <button class="btn" data-section="ucapanPangeran" onclick="showSection('ucapanPangeran')" aria-label="Lihat bagian Ucapan Pangeran Kecil">7. Ucapan Pangeran Kecil</button>
+            <button class="btn" data-section="empatPeristiwa" onclick="showSection('empatPeristiwa')" aria-label="Lihat bagian Empat Peristiwa">8. Empat Peristiwa</button>
+            <button class="btn" data-section="pestaRamalan" onclick="showSection('pestaRamalan')" aria-label="Lihat bagian Pesta & Ramalan">9. Pesta & Ramalan</button>
+            <a href="Ulangan Kelas Part 1/Game Tebak Agka/index.html" class="btn-ulangan" target="_blank" aria-label="Buka halaman Ulangan Kelas">
+                <span class="icon">📝</span>Tebak Angka
+            </a>
+            <a href="Ulangan Kelas Part 1/memory match/index.html" class="btn-ulangan" target="_blank" aria-label="buka halaman ulangan kelas">
+                <span class="icon">📝</span> Memory Match
+            </a>
+            <button class="btn" data-section="perayaanMembajak" onclick="showSection('perayaanMembajak')" aria-label="Lihat bagian perayaan membajak">10. Perayaan Membajak</button>
+            <button class="btn" data-section="masaKanak" onclick="showSection('masaKanak')" aria-label="Lihat bagian masaKanak">11. Masa Kanak-kanak</button>
+            <button class="btn" data-section="masaRemaja" onclick="showSection('masaRemaja')" aria-label="lihat masa remaja">12. Masa Remaja</button>
+            <button class="btn" data-section="melihatEmpat" onclick="showSection('melihatEmpat')" aria-label="Lihat bagian Melihat Empat">13. Melihat Empat Peristiwa</button>
+            <button class="btn" data-section="orangTua" onclick="showSection('orangTua')" aria-label="#">14. Melihat Orang Tua</button>
+            <button class="btn" data-section="renunganPangeran" onclick="showSection('renunganPangeran')" aria-label="#">15. Renungan Pangeran</button> 
+<!--16-->
+            <button class="btn" data-section="orangSakit" onclick="showSection('orangSakit')" aria-label="#">16. Orang Sakit</button> 
+            <button class="btn" data-section="pelakuanPangeran" onclick="showSection('perlakuanPangeran')" aria-label="#">17. Perlakuan Pangeran</button>
+            <button class="btn" data-section="orangMati" onclick="showSection('orangMati')" aria-label="#">18. Orang Mati.</button>
+            <button class="btn" data-section="pertapa" onclick="showSection('pertapa')" aria-label="#">19. Pertapa</button>  
+            <button class="btn" data-section="rahula" onclick="showSection('rahula')" aria-label="Lihat Bagian Rahula">20. Lahirnya Rahula</button>
+            <button class="btn" data-section="bab1" onclick="showSection('bab1')" aria-label="lihat bagian bab 1">21. Bab 1 Telah Selesai</button>
+        </div>
+<!--Introducing-->
+        <div class="content-area">
+            <div id="introduction" class="section active">
+                <img src="images/0. introducing.jpg" alt="Introducing" onclick="showFullScreen('introducing')">
+                <div class="text-content">
+                    <h1>Introduction</h1>
+                    <h2>1. Media Belajar Riwayat Hidup Buddha Gotama.</h2>
+                    <h2>2. Media Belajar ini Boleh Dimodifikasi sesuai kebutuhan belajar Umat Buddha, misalnya Sekolah Minggu atau Puja Bakti Umum.</h2>
+                    <h2>3. Cara mengubah ataupun menambah text dan gambar yaitu menggunakan Software Visual Studio Code dengan Bahasa (Html, Java Script dan Css).</h2>
+                    <h2>4. Semoga kita selalu maju di dalam Dhamma</h2>
+                    <h2>Salam dari saya Sri Andik Cahyono. S.Pd.B</h2>
+                </div>
+            </div>
+<!--Dhammapada Syair 1-->
+            <div id="dhammapada" class="section">
+                <img src="images/00. YAMAKA VAGGA - 1.jpg" alt="Dhammapada 1" onclick="showFullScreen('dhammapada')">
+                <div class="text-Content">
+                    <h1>Pembacaan Kitab Suci Dhammapada,</h1> 
+                    <h1>Bab Satu, Yamakka Vagga,</h1> 
+                    <h1>Syair satu dan dua.</h1>
+                </div>
+            </div>
+<!--Dhammapada Syair 2-->
+            <div id="dhammapada2" class="section">
+                <img src="images/01. YAMAKA VAGGA - 2.jpg" alt="Dhammapada 2" onclick="showFullScreen('dhammapada2')">
+                <div class="text-Content">
+                    <h1>Syair Dua</h1>
+                </div> 
+            </div>
+<!--Sejarah Dhammapada-->
+<!--Kerajaan-->
+            <div id="kerajaan" class="section">
+                <img src="images/01. kerajaan.jpg" alt="Kerajaan Sakka" onclick="showFullScreen('kerajaan')">
+                <div class="text-content">
+                    <h1>BAB 1</h1>
+                    <h2>Kerajaan Sakka</h2>
+                    <p>1. Pada Zaman dahulu kala ada sebuah Kerajaan bernama Kerajaan Sakka dan Rajanya bernama Okkaka, beliau adalah Raja awal yang memerintah. Nama kerajaan terinspirasi dari Banyak Pohon Sakka di tempat tersebut.</p>
+                    <p>2. Raja Okkaka memiliki 4 Putra & 5 Putri, kemudian ratu meninggal dan Raja Menikah lagi.</p>
+                    <p>3. Dari pernikahan barunya sang Raja dikaruniai seorang Putra, karena senang raja akan mengabulkan semua permintaan Ratu.</p>
+                    <p>4. Ratu yang baru meminta anaknya kelak menjadi raja, karena sebab itulah 4 pangeran dan 5 putri di minta pergi untuk membuat kerajaan baru.</p>
+                </div>
+            </div>
+<!--silsilah-->
+            <div id="silsilah" class="section">
+                <img src="images/02. silsilah.jpg" alt="Silsilah" onclick="showFullScreen('silsilah')">
+                <div class="text-content">
+                    <h1>Silsilah Raja hingga Pangeran Siddhartha</h1>
+                    <p>1. Kerajaan Sakka diperintan oleh Raja Okkaka</p>
+                    <p>2. Raja Okkaka (Kerajaan Sakka) - Kerajaan Kapilavatthu ; Raja Jayasena - Raja Sihahanu - Raja Suddhodana - Pangeran Siddhartha</p>
+                </div>
+            </div>
+<!--Kerajaan Kapila-->
+            <div id="kerajaanKapila" class="section">
+                <img src="images/03. kerajaanKapila.jpg" alt="Kerajaan Kapilavatthu" onclick="showFullScreen('kerajaanKapila')">
+                <div class="text-content">
+                    <h2>Kerajaan Kapilavatthu</h2>
+                    <p>1. Empat Pangeran Pendiri Kerajaan Kapilavatthu ; Okkakamuka, karanda, Hatthinika, dan Sinipura Berserta 5 putri.</p>
+                    <p>2. Makna Kapilavatthu adalah adanya Seorang Pertapa Bernama Kapila & Vatthu adalah tempat.</p>
+                    <p>3. Ketika Raja Suddhodana naik tahta menjadi Raja, Beliau menikah dengan Ratu Māyā (Maha Māyā), dari pernikahan ini dikarunia seorang putra bernama Siddhartha yang artinya tercapailah segala cita-citanya.</p>
+                </div>
+            </div>
+<!--mimpi ratu-->
+            <div id="mimpiRatu" class="section">
+                <img src="images/04. mimpi ratu.jpg" alt="Mimpi Ratu" onclick="showFullScreen('mimpiRatu')">
+                <div class="text-content">
+                    <h2>Mimpi Ratu Māyā</h2>
+                    <p>1. Ratu Māyā saat itu sudah berusia 45 tahun, namun belum memiliki keturunan. pada saat itulah ada perayaan Asalha berlangsung 7 hari. Setelah perayaan selesai, Ratu Mandi dengan air wangi, mengucapkan janji Uposatha dan pergi tidur.</p>
+                    <p>2. Di waktu tidur Ratu Māyā Bermimpi ada 4 dewa agung membawa ke gunung Himava (Himalaya) dan meletakkannya di bawah pohon sala di (lereng) Manosilatala kemudian ratu dimandikan oleh 4 istri dewa tadi di danau Anotatta, menggosokan minyak wangi, memakaikan pakaian dewa.</p>
+                    <p>3. Ratu dipimpin masuk ke sebuah istana emas dan di rebahkan di dipan yang bagus</p>
+                    <p>4. Seekor gajah putih membawa sekuntum bunga terai memasuki ruangan dan berpradaksina mengelilingi ratu sebanyak 3x, kemudian memasuki perut Ratu Maya dari sebelah kanan.</p>
+                    <h2>Makna Mimpi Ratu Māyā</h2>
+                    <p>1. Para Brahmana mengatakan bahwa Ratu Māyā akan mengandung anak laki-laki yang kelak akan menjadi seorang Cakkavati (raja dari semua raja) atau menjadi seorang Buddha.</p>
+                </div>
+            </div>
+<!--kelahiran pangeran-->
+            <div id="kelahiranPangeran" class="section">
+                <img src="images/05. kelahiranPangeran.jpg" alt="Kelahiran Pangeran" onclick="showFullScreen('kelahiranPangeran')">
+                <div class="text-content">
+                    <h2>Masa Kecil</h2>
+                    <p>1. Ratu Māyā hendak Bersalin di Devadaha, tibalah di taman Lumbini untuk Istirahat dan berjalan-jalan.</p>
+                    <p>2. Ratu berhenti di pohon Sala, pada saat itu Ratu Māyā merasa tidak enak di perutnya, para dayang membuat tirai pelindung.</p>
+                    <p>3. Ratu dalam sikap berdiri berpegangan di salah satu dahan pohon Sala, dalam posisi tsb Ratu melahirkan bayi laki-laki.</p>
+                    <p>4. Pada waktu itu tepat purnama sidhi di bulan Vaisak tahun 623 SM</p>
+                    <h2>Disambut Oleh Dewa</h2>
+                    <p>1. Empat Maha Brahma menerima Sang Bayi dengan jala Emas, kemudian dari langit turun air dingin dan panas untuk memandikan sang bayi supaya menjadi segar dan bersih dari Noda.</p>
+                    <p>2. bayi itu kemudian berdiri tegak dan berjalan 7 langkah diatas tujuh kuntum bunga teratai ke arah utara.</p>
+                </div>
+            </div>
+<!--pohon buddhis-->
+            <div id="pohonBuddhis" class="section">
+                <img src="images/06. pohonBuddhis.jpg" alt="Pohon Buddhis" onclick="showFullScreen('pohonBuddhis')">
+                <div class="textContent">
+                    <h2>Pohon Berciri Buddhis</h2>
+                    <p>1. ketika Ratu Māyā melahirkan pangeran Siddhartha, beliau berdiri di bawah pohon sala.</p>
+                    <p>2. Ketika Sang Buddha parinibanna, beliu parinibanna di bawah pohon sala.</p>
+                    <h2>Wawasan umum</h2>
+                    <p>1. Orang Jaman dulu memberi kawan tertentu dengan nama pohon atau buah. (rambutan, durian, mangga, manggis).</p>
+                    <p>2. Kota Solo Conon Sejarahnya nama tersebut terisnpirasi dari pohon Sala. </p>
+                </div>
+            </div>
+<!--ucapan pangeran-->
+            <div id="ucapanPangeran" class="section">
+                <img src="images/07. ucapanPangeran.jpg" alt="Ucapan Pangeran" onclick="showFullScreen('ucapanPangeran')">
+                <div class="text-content">
+                    <h2>Ucapan Pangeran Kecil</h2>
+                    <p>"Aggo 'haṁ asmi Lokassa, | Akulah Pemimpin di dunia ini,</p>
+                    <p>jettho 'haṁ asmi lokassa, | Akulah tertua di dunia ini,</p>
+                    <p>settho 'haṁ asmi lokassa, | Akulah Teragung di dunia ini,</p>
+                    <p>ayaṁ antimā jāti, Inilah, | Kelahiranku yang terakhir,</p>
+                    <p>nathi dāni punabbhavo. | Tak Akan ada tumimbal lahir lagi.</p>
+                    <h2>Pertapa Asita / Kaladevala</h2>
+                    <p>1. Seorang pertapa bernama Asita (kaladevala) sewaktu bermeditasi di Pegunungan Himalaya, di beritahu oleh para dewa dari alam Tavatimsa bahwa seorang bayi telah lahir kelak akan menjadi Buddha.</p>
+                    <p>2. Setelah melihat Sang Bayi yang memiliki 32 tanda Mahapurisa, pertapa memberi hormat di ikuti oleh Raja.</p>
+                    <p>3. Pertapa Asita tertawa lalu Menangis (bayi ini akan menjadi buddha, namun dia tidak sempat mebelajar ajarannya karena usianya).</p>
+                </div>
+            </div>
+<!--4 peristiwa-->
+            <div id="empatPeristiwa" class="section">
+                <img src="images/08. empatPeristiwa.jpg" alt="Empat Peristiwa" onclick="showFullScreen('empatPeristiwa')">
+                <div class="text-content">
+                    <h2>Empat Peristiwa</h2>
+                    <p>1. Ketika pertapa Asita berkunjung melihat Pangeran Siddharta di istana beliau berpesan bahwa Pangeran tidak boleh melihat Empat Peristiwa yaitu;</p>
+                    <p>Orang Tua</p>
+                    <p>Orang Sakit</p>
+                    <p>Orang Meninggal</p>
+                    <p>Pertapa Suci</p>
+                    <p>2. Jika pangeran melihat Empat Peritiwa tersebut, maka Pangeran akan meninggalkan Istana, bertapa dan menjadi Buddha.</p>
+                    <h2>Pada hari yang sama lahir (timbul) pula dalam dunia ini</h2>
+                    <p>1. Puteri Yasodharā /Rāhulamātā (ibu dari Rāhula).</p>
+                    <p>2. Ānanda, yang kelak menjadi pembantu tetap Sang Buddha.</p>
+                    <p>3. Kanthaka, yang kelak menjadi kudaPangeran Siddhartha.</p>
+                    <p>4. Channa, yang kelak akan menjadi kusir Pangeran Siddharta</p>
+                    <p>5. Kāludāyī, yang kelak mengundang Sang Buddha untuk berkunjung kembali ke Kapilavatthu.</p>
+                    <p>6. Seekor Gajah Istana.</p>
+                    <p>7. Pohon Boddhi, di bawah pohon ini Pangeran Siddharta kelak mendapatkan enerangan Agung.</p>
+                    <p>8. Nindhikumbhi, kendi tempat harta pusaka.</p>
+                </div>
+            </div>
+<!--pesta dan ramalan-->
+            <div id="pestaRamalan" class="section">
+                <img src="images/09. pestaRamalan.jpg" alt="Pesta dan Ramalan" onclick="showFullScreen('pestaRamalan')">
+                <div class="text-content">
+                    <h2>Pesta dan Ramalan</h2>
+                    <p>1. lima hari setelah Pangeran lahir, Raja suddhodana sanak saudaranya berkumpul, bersama-sama dengan 108 orang Brahmana untuk merayakan kelahiran anak pertamanya dan memilih nama yang baik.</p>
+                    <p>2. Delapan orang Brahmana yang mahir dalam meramal nasib, yaitu; Ramā, Dhaja, Lakkhana, Mantī, Kondañña, Bhoja, Suyama, dan Sudatta.</p>
+                    <p>3. Kondañña pertapa muda yang dengan pasti mengatakan, Pangeran akan menjadi Buddha.</p>
+                    <p>4. Nama yang kemudian di pilih adalah Siddharta (Siddhattha), yang artinya Tercapailah segala cita-citanya.</p>
+                    <p>5. Tujuh Hari setelah Pangeran Siddharta dilahirkan, Ratu Māyā meninggal dunia dan terlahir di Surga Tusita.</p>
+                    <p>6. Raja Suddhodana menyerahkan perawatan pangeran kepada Puteri Pajāpatī (adik dari Ratu Māyā), yang juga dinikahinya.</p>
+                    <p>7. Dari pernikahan ini lahir Seorang Putra yaitu Nanda dan puteri Rūpanandā</p>
+                </div>
+            </div>
+<!---games 1-->
+<!--Games 2-->
+<!--Perayaan Membajak-->
+            <div id="perayaanMembajak" class="section">
+                <img src="images/10. perayaanMembajak.jpg" alt="Perayaan Membajak" onclick="showFullScreen('perayaan membajak')">
+                <div class="text-content">
+                    <h2>Perayaan Membajak</h2>
+                    <p>1. Setelah Pangeran berumur beberapa bulan, Raja Suddhodana mengajaknya turut pergi ke perayaan membajak.</p>
+                    <p>2. Raja turut serta membajak bersama petani dengan menggunakan sebuah alat bajak yang terbuat dari emas.</p>
+                    <p>3. pangeran di tinggal sendirian di bawah pohon jambu oleh para dayang-dayang.</p>
+                    <p>4. Pangeran sedang duduk bersila bermeditasi hingga mencapai Jhana, artinya sudah tidak terusik oleh suara disekitarnya.</p>
+                    <p>5. Bayangan pohon jambu tidak berpindah selama pangeran bermeditasi.</p>
+                    <p>6. Untuk kedua kalinya Raja Suddhodana memberi hormat kepada Pangeran Siddharta</p>
+                </div>
+            </div>
+<!--Masa Kanak-kanak-->
+            <div id="masaKanak" class="section">
+                <img src="images/11. masa kanak-kanak.jpg" alt="Masa Kanak-kanak" onclick="showFullScreen('perayaan membajak')">
+                <div class="text-content">
+                    <h2>
+                        Masa kanak-kanan
+                    </h2>
+                    <p>1. Setelah Pangeran berusia 7 tahun, raja memerintahkan untuk menggali 3 kolam yang akn ditananami bunga teratai (Lotus) di halam istana.</p>
+                    <p>2. Kolam tersebut antara lain; Kolam Teratai Biru (Uppala), Kolam teratai merah (Paduma), Kolam teratai Putih (pundarika).</p>
+                    <p>3. Raja memesan wangi-wangian, pakaian dan penutup kepala dari negara kasi, yang pada saat itu terkenal dengan barang-barang dengan mutu yang tinggi.</p>
+                    <p>4. para pelayan diperintahkan untuk selalu memayungi pangeran dengan payung yang indah kemanapun pangeran kecil pergi. baik siang ataupun malam (simbol keagungan).</p>
+                    <h2>Masa Sekolah</h2>
+                    <p>1. Raja memerintahkan Seorang Guru bernama Visvamitta untuk memberikan pelajaran berbagaia ilmu pengetahuan kepada pangeran</p>
+                    <p>2. Pangeran Siddharta sangat cerdas sekali, semua mata pelajaran denngan sangat cepat mudah dipahami, dalam waktu singkat tidak ada lagi pelajaran diberikan.</p>
+                    <p>3. Pangeran juga memiliki sifat penuh kasih sayang terhadap semua makhluk.</p>
+                    <p>4. Kisah penyelamatan Belibis yang terkena anak panah devadatta.</p>
+                    <p>5. Kehidupan adalah milik dari sesorang yang berusaha menyelamatkannya.</p>
+                </div>
+            </div>
+<!--Masa Remaja-->
+            <div id="masaRemaja" class="section">
+                <img src="images/12. masa remaja.jpg" alt="masa remaja" onclick="showFullScreen('masaRemaja')">
+                <div class="text-content">
+                    <h2>Masa Remaja</h2>
+                    <p>1. Sewaktu Pangeran berusia 16 tahun, Raja Suddhodana membuat 3 istana yang besar dan indah.</p>
+                    <p>2. Istana Musim Dingin (Ramma), Istana musim Panas (Surama), Istana Musim Hujan (Subha).</p>
+                    <p>3. Raja mengirim undangan kepada para orang tua untuk mengirim anak gadisnya dalam suatu pesta. namun orang tua tidak menggubris.</p>
+                    <p>4. Karena Pangeran Siddharta belum teruji dalam ilmu seni dan peperangan, bagimana bisa melindungi istrinya nanti.</p>
+                    <p>5. Karena hal ini, Pangeran menyarankan utuk di adakan satu sayembara, melawan para pangeran dari berbagai kerajaan yang lain.</p>
+                    <p>6. Pertandingan itu antara lain (naik kuda, menjinakkan kuda liar,menggunakan pedang, memanah).</p>
+                    <p>7. Dalam memanah pangeran tidak ada tandingannya (busur panah yang di pakai sangat berat, dan harus di bawa empat orang).</p>
+                    <p>8. Dalam sayembara Pangeran Siddhartadinyatakan sebagai pemenangnya.</p>
+                    
+                    <h2>Pesta Besar</h2>
+                    <p>1. Sebuah pesta besar di adakan dan kemudian dihadiri tidak kurang dari 40.000 gadis cantik.</p>
+                    <p>2. Kemudian Pangeran Siddharta memilih puteri Yasodhara, anak dari raja Suppabuddha.</p>
+                    <p>3. Pageran siddhartha dinikahkan dengan putri Yasodhara pad usia 16 tahun, dengan hal itu Raja menjadi tenang dan tidak terlalu kawatir akan 4 ramalan.</p>
+                    <p>4. Raja selalu berpesan kepada para pengawal supaya pangeran tidak melihat 4 peristiwa.</p>
+                    <p>5. jika ada dayang yang sakit, maka segera di singkirkan. dan para pengawalnya adalah anak muda belia.</p>
+                    <p>6. raja memerintahkan membuat tembok yang tinggi, dengan pintu-pintu yang kuat dan kokoh.</p>
+                    <p>7. semua tujuan itu adalah supaya pangeran nantinya di harapkan menjadi Raja yang menggantikannya. </p>
+                </div>
+            </div>
+<!--Melihat Empat Peristiwa-->.
+            <div id="melihatEmpat" class="section">
+                <img src="images/13. melihat orang tua.jpg" alt="melihat empat peristiwa" onclick="showFullScreen('melihatEmpat')">
+                <div class="text-content">
+                    <h2>Melihat Empat Peristiwa</h2>
+                    <p>1. Pangeran tidak bahagia karena hidup seperti tawanan dan terpisah dari dunia luar.</p>
+                    <p>2. pangeran meminta ijin untuk berjalan-jalan keluar istana, melihat bagaimana rakyatnya nanti yang hendak dia pimpin.</p>
+                    <p>3. karena permohonan yang wajar, maka oleh raja di kabulkan, namun raja perlu mempersiapkan segalanya untuk sambutan Pangeran oleh rakyat.</p>
+                    <p>4. Kota dihias dengan rapi oleh perintah raja. Kemudian Pangeran di persilahkan untuk berjalan-jalan sepuas hati.</p>
+                    <h2>Melihat Orang Tua</h2>
+                    <p>1. sewaktu angeran berjalan-jalan di kota. munculah seorang tua renta</p>
+                    <p>2. Orang tua tsb memiliki ciri sbb ; rambut panjang putih semua, kulit mukanya kering dan keriput, matanya hampir buta, pakaian nya compang camping
+                       dan kotor sekali, giginya sudah ompong, badannya kurus kering, dan susah payah berjalan di topang oleh tongkatnya, berjalan kesana kemari tanpa memperdulikan
+                       orang-orang di sekitarnya. dan memimnta2 makanan.  
+                    <p>3. jika orang tua tsb tidak diberi makan hari itu, maka dia akan segera mati.</p>
+                    <p>4. melihat orang tua itu, pangeran terkesan sekali, karena baru pertama kali melihat</p>
+
+                </div>
+            </div>
+<!--Melihat Orang Tua-->
+            <div id="orangTua" class="section">
+                <img src="images/14. orangTua.jpg" alt="Orang Tua" onclick="showFullScreen('#')">
+                <div class="text-content">
+                    <h2>Pangeran Sidddhartha melihat Orang Tua</h2>
+                    <p>1. Pertanyaan Pangeran Siddhartha</p>
+                    <p>2. "Apakah itu, Channa"?, 
+                    <p>3. Itu tidak mungkin seorang manusia, mengapa ia bungkuk sekali?. 
+                    <p>4. Mengapa ia gemetar sewaktu berjalan?,</p>
+                    <p>5. Mengapa rambutnya putih dan tidak hitam seperti punyaku?</p>
+                    <p>6. Apa yang salah dengan matanya?</p>
+                    <p>7. dan giginya di kemanakan?</p>
+                    <p>8. Apakah ada orang yang terlahir seperti itu?</p>
+                    <p>9. coba katakan oh channa yang baik, Apakah arti semua ini?</p>
+                    <h2>Jawaban Channa!</h2>
+                    <p>1. itu adalah keadaan orang tua, tetapi bukan keadaaan sewaktu dia dilahirkan.</p>
+                    <p>2. sewaktu muda ia seperti kita, dan karena dia sekarang sudah tua sekali maka keadaannya telah berubah seperti yang tuan lihat.</p>
+                    <p>3. sebaiknya tuan melupakan orang tersebut. </p>
+                    <P>4. jika manusia sudah sangat lama hidup, maka dia akan seperti itu kondisinya. hal ini tidak dapat dielakkan.</P>
+                </div>
+            </div>
+            <div id="renunganPangeran" class="section">
+                <img src="images/15. Renungan Pangean.jpg" alt="Renungan pangeran" onclick="showFullScreen('#')">
+                <div class="text-Content">
+                    <h2>Renungan Pangeran</h2>
+                    <p>1. pangeran tidak puas dengan jawaban Chana.</p>
+                    <p>2. Pangeran memerintahkan untuk segera kembali ke istana karena melihat pemandangan orang tua membuatnya sedih sekali.</p>
+                    <p>3. Karena orang sekaya dan terpandang pun pasti akan mengalami usia tua.</p>
+                    <h2>Pesta malam hari</h2>
+                    <p>1. Malam itu diselenggarakan Pesta untuk menghibur pangeran, namun pangeran acuh tak acuh saja. dan terlihat tidak bahagia.</p>
+                    <p>2. sewaktu pesta berlangsung, pangeran malah sibuk merenung tentang orang tua, usia tua yang di alami manusia.</p>
+                    <p>3. merenung dalam hati "pada suatu hari engkau semua akan menjadi tua, tanpa ada yang terkecuali dan begitu pula engkau yang tercanti".</p>
+                    <p>4. setelah pesta selesai, pangeran masuk ke kamar tidur, pikiran itu masih mengganggunya.</p>
+                    <p>5. adakah orang yang bisa menghentikan usia tua, supaya manusia tidak seperti kakek tua yang saya lihat tadi.</p>
+                </div>
+            </div>
+            <div id="orangSakit" class="section">
+                <img src="images/16. Orang Sakit.png" alt="Orang Sakit" onclick="showFullScreen('#')">
+                <div class="text-Content">
+                    <H2>Orang Sakit</H2>
+                    <p>1. Hari berikutnya pangeran meminta ijin untuk melihat kota Kapilavatthu, tetapi sekarang tanpa memberi tahu pada par penduduk.</p>
+                    <p>2. dengan berat hati raja memberikan izin, karena tidak ada gunanya melarang, hal itu akan membuat pangeran menjadi sangat sedih.</p>
+                    <p>3. pangeran pergi bersama channa, menggunakan pakaian bangsawan.</p>
+                    <p>4. pemandangan kota saat itu lain sekali; penduduk sibuk bekerja, pandai besi membuat piau, pandai emas membuat kalung, gelang dll.</p>
+                    <p>5. tukang pakaian membuat kain celup, dan di jemur dengan berbagai warna, tukang kue membuat kue, memanggang roti dll. </p>
+                    <p>6. dan semua orang pada saat itu sedang sibuk sekali.</p>
+                    <h2>Orang yang sedang menderita sakit</h2>
+                    <p>1. ada orang yang sedang merintih kesakitan berguling-guling, dengan keadaan memegang perutnya.</p>
+                    <p>2. seluruh badannya terdapat bercak-bercak berwarna ungu, matanya berputar-putar dan nafasnya megap-megap</p>
+                    <p>3. untuk kedua kalinya pangeran melihat sesuatu yang membuatnya sangat sedih,</p>
+                </div>
+            </div>
+            <div id="perlakuanPangeran" class="section">
+                <img src="images/17. Perlakuan Pangeran kepada yng sakit.png" alt="Perlakuan Pangeran" onclick="showFullScreen('#')">
+                <div class="text-content">
+                    <h2>Sikap pangeran kepada yang sakit</h2>
+                    <p>1. meletakkan kepala orang sakit tersebut di pangkuannya, dan menanyakan "mengapakah engkau, engkau mengapakah"?.</p>
+                    <p>2. orang sakit tersebut tidak mengatakan apapun, hanya menangis tersedu-sedu.</p>
+                    <p>3. Channa mengatakan, orang itu sedang sakit pes, darahnya beracun dan badanya terasa terbakar.</p>
+                    <p>4. Channa "mohon pangeran tidak menyentuhnya terlalu lama.</p>
+                    <p>5. karena pangeran merasa sedih akhirnya beliu pulang ke istana untuk merenungkan perihal penyakit.</p>
+                </div>
+            </div>
+            <div id="orangMati" class="section">
+                <img src="images/18. orang mati.png" alt="Orang Mati" onclick="showFullScreen('#')">
+                <div class="text-Content">
+                    <h2>Orang Mati</h2>
+                    <p>1. Pangeran Melihat Orang mati</p>
+                    <p>2. Serombongan orang sedang menangis mengikuti sebuah usungan, dimana terbaring orang yang kurus kering tidak bergerak. </p>
+                    <p>3. usungan itu di di bawa ke tepian sungai, kemudian orang yang di bawa di letakkan di atas tumpukan kayu dna api dinyalakan.</p>
+                    <p>4. api di nyalakan namun orang yang di atasnya diam saja, walupun api membara di berbagai sudut</p>
+                    <p>5. Untuk ketiga kalinya pangeran melihat sesuatu yang belum pernah di lihatnya.</p>
+                    <p>6. pangeran menanyakan hal ini kepada Channa, dan channa menjelaskan bahwa orang di sana ada olah orang yang sudah mati</p>
+                    <p>7. dan semua makhluk akan mengalami kematian, siapapun, termasuk pangeran sendiri.</p>
+                    <p>8. karena akan hal ini membuat pangeran menjadi semakin sedih.</p>
+                    <p>9. Pangeran balik ke istana lagi untuk merenungkan akan hal ini sepanjang hari.</p>
+                </div>
+            </div>
+            <div id="pertapa" class="section">
+                <img src="images/19. Pertapa Suci.jpg" alt="Pertapa" onclick="showFullScreen('#')">
+                <div class="text-Content">
+                    <h2>pertapa</h2>
+                    <p>1. melintas seorang pertapa berjubah kuning membawa sebuah bowl.</p>
+                    <p>2. Pangeran memberi hormat dan menanyakan maksud dan tujuan membawa bowl itu.</p>
+                    <P>3. PERTAPA MENJAWAB "saya seorang pertapa, meninggalkan semua keduniawian untuk mencari obat usia tua, sakit dan kematian. mangkuk ini saya gunakan
+                        untuk mengharapkan makanan bagi mereka yang berbelas kasih.
+                    </P>
+                    <p>4. pangeran terkejut karena apa yang dia cari juga sama seperti apa yang di pikirkan pertapa "dimankah obat itu berada"</p>
+                    <p>5. dikesunyian hutan-hutan yang lebat, jauh dari gangguan dan keramaian.</p>
+                </div>
+            </div>
+            <div id="rahula" class="section">
+                <img src="images/20. kelahiran rahula.jpeg" alt="Rahula" onclick="showFullScreen('rahula')">
+                <div class="text-Content">
+                    <h2>Rahula</h2>
+                    <p>1. lahirnya Rahula</p>
+                    <p>2. para dayang-dayang sedang menari Pangeran Sidddhartha</p>
+                    <p>3. hendak menyampaikan pesan bahwa, putri Yasodhara telah melahirkan bayi laki-laki yang sehat.</p>
+                    <p>4. namun pangeran tidak bergembira melainkan wajahnya pucat dan mengatakan.</p>
+                    <p>5. Rãhulajãto, badhanam Jãtam "Satu Jerat telah terlahir, satu ikatan telah lahir"</p>
+                    <p>6. karena ucapan ini akhirnya bayi yang baru lahir tersebut di beri nama Rahula.</p>
+                </div>
+            </div>
+            <div id="bab1" class="section">
+                <img src="images/21. Penutup.jpeg.jpg" alt="penutup" onclick="showFullScreen('bab1')">
+                <div class="text-content">
+                    <h1>Penutup</h1>
+                    <h1>Bab 1 Telah Selesai. Terima kasih</h1>
+                    <h1>Terpujilah Sang Buddha Namo Buddhaya.</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+     <script src="script.js"></script>
+</body>
+</html>

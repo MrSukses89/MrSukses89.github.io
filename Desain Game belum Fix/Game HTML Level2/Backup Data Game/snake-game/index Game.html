@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="beautiful-nav">
+        <ul>
+            <li><button class="nav-button" onclick="startGame()">Start Game</button></li>
+            <li><button class="nav-button" onclick="pauseGame()">Pause</button></li>
+            <li><button class="nav-button" onclick="resetGame()">Reset</button></li>
+            <li><button class="nav-button" onclick="toggleMusic()">Toggle Music</button></li>
+            <li><button class="nav-button" onclick="showHowToPlay()">How to Play</button></li>
+        </ul>
+    </nav>
+
+    <div class="score-display">
+        <p>Skor: <span id="scoreText">0</span></p>
+    </div>
+
+    <div id="howToPlayText">
+        <h2>How to Play</h2>
+        <pre>
+1. Gunakan tombol panah (Arrow Keys) untuk menggerakkan ular.
+2. Makan makanan merah untuk menambah skor dan membuat ular bertambah panjang.
+3. Makan Makanan Putih ekor berkurang satu.
+4. Hindari menabrak batu abu-abu, dinding, atau tubuh ular sendiri.
+5. Makan batu biru untuk meningkatkan kecepatan menjadi 20.
+6. Makan batu ungu untuk meningkatkan kecepatan menjadi 25.
+7. Makan batu kuning untuk mengembalikan kecepatan ke normal (14).
+8. Tekan "M" untuk mute/unmute musik latar.
+9. Gunakan slider atau tombol +/- untuk mengatur volume musik dan efek.
+10. Tekan "Enter" untuk memulai ulang setelah game over.
+Selamat bermain, Salam Bahagia Selalu dari Mr. Sukses!
+        </pre>
+        <button onclick="hideHowToPlay()">Close</button>
+    </div>
+
+    <canvas id="gameCanvas" width="1080" height="600"></canvas>
+
+    <audio id="eatSound" src="sound Ori/ahh!! sound effect.mp3"></audio>
+    <audio id="crashSound" src="sound Ori/Sound Effect Itakimo Bali ahh.mp3"></audio>
+    <audio id="bodyCrashSound" src="sound Ori/Yamekuda Sai 2.mp3"></audio>
+    <audio id="backgroundMusic" src="sound Ori/Wagakki Band.mp3" loop></audio>
+    <audio id="purpleCrashSound" src="sound Ori/Yamekuda Sai 2.mp3"></audio>
+    <audio id="blueRockSound" src="sound Ori/Yamekuda Sai 3.mp3"></audio>
+    <audio id="yellowRockSound" src="sound Ori/yamete kudasai 4.mp3"></audio>
+    <audio id="whiteRockSound" src="sound Ori/Yamedekudasai Makan putih.mp3"></audio>
+
+    <div id="volumeControls">
+        <div>
+            <label>Music Volume: </label>
+            <button id="musicDown">-</button>
+            <input type="range" id="musicVolumeSlider" min="0" max="1" step="0.1" value="1">
+            <button id="musicUp">+</button>
+        </div>
+        <div>
+            <label>Effects Volume: </label>
+            <button id="effectDown">-</button>
+            <input type="range" id="effectVolumeSlider" min="0" max="1" step="0.1" value="0.5">
+            <button id="effectUp">+</button>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
