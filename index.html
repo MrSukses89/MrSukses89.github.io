@@ -1,8 +1,548 @@
-<div style="position: relative; width: 100%; height: 0; padding-top: 141.4286%;
- padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
- border-radius: 8px; will-change: transform;">
-  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
-    src="https://www.canva.com/design/DAGVxPIBtwM/-IeyaERq5iHuyljEurqjHQ/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
-  </iframe>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Html_Mas_Andik</title>
+    <link href="ico Mr andik/AI ASISTANT/meta.png">
+    <style>
+    body {
+    background-color: #a5bbbe;
+    width: 100%;
+    min-height: 100vh;
+    background-image: url('wallpaper/mark-eder-R9OS29xJb-8-unsplash.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed; /* Gambar tetap saat scroll */
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+@keyframes moveBackground {
+    0% {
+        background-position: center 0;
+    }
+    50% {
+        background-position: center 50px; /* Bergerak ke bawah */
+    }
+    100% {
+        background-position: center 0; /* Kembali ke posisi awal */
+    }
+}
+
+  h2 {
+  text-align: left;
+  color: #222222;
+  padding-left: 20px; /* Jarak dari kiri */
+    }
+
+        h1 {
+            text-align: center;
+            color: #222222;
+            font-weight: bold;
+            font-size:40px;
+        }
+
+        .navbar {
+            background-color: #858585;
+            padding: 30px;
+            overflow: hidden;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .nav-button {
+            background-color: #4CAF50;
+            color: rgb(255, 255, 255);
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 0 10px;
+            font-size: 23px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .nav-button:hover {
+            background-color:  #0967ff;
+            box-shadow: 0px 0px 0px 2px #ffffff;
+        }
+
+        .custom-button {
+            background-color: gold;
+            padding: 15px 30px;
+            border-radius: 0px 0px 20px 0px;
+            border:none;
+            margin: 0 10px;
+            font-size: 20px;
+            cursor: pointer;
+            animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+            animation-duration: 2s;
+        }
+
+        .custom-button.green {
+            background-color: rgb(73, 170, 98);
+            
+        }
+        .custom-button:hover {
+            background-color: #7fff2a;
+            box-shadow:0px 0px 6px 6px #b7b7b7;
+            transition-duration: 2ms;
+            
+
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 10px 30px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav li {
+            margin: 5px 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #0a0a0a;
+            font-weight: bold;
+        }
+
+        /* Responsivitas */
+        @media (max-width: 768px) {
+            .nav-button {
+                padding: 8px 15px;
+                font-size: 12px;
+                margin: 0 5px;
+            }
+
+            .custom-button {
+                padding: 4px 20px;
+                margin: 0 5px;
+            }
+
+            nav ul {
+                padding: 5px 15px;
+            }
+
+            h2 {
+                padding-left: 10px; /* Jarak lebih kecil di mobile */
+            }
+        }
+      .pict {
+        background-color: none;
+        color: none;
+        border: none;
+      }
+     </style> 
+    </style>
+</head>
+<body>
+    <!-- Navbar dengan link eksternal --> 
+   
+    <div class="navbar">
+         <img class="pict" src="Mas Andik Logo.png" height="60" width="250" margin-right="0px" position="left">
+        <button class="nav-button" onclick="window.open('https://www.google.com', '_blank')">
+            Home Google
+        </button>
+        <button class="nav-button" onclick="window.open('https://news.google.com/home?hl=id&gl=ID&ceid=ID:id', '_blank')">
+            Google News
+        </button>
+        <button class="nav-button" onclick="window.open('https://translate.google.com/?sl=en&tl=id&op=translate', '_blank')">
+          Google Translate
+        </button>
+        <button class="nav-button" onclick="window.open('https://kaltim.kemenag.go.id/', '_blank')">
+          Kemenag Kaltim
+        </button>
+        <button class="nav-button" onclick="window.open('https://web.whatsapp.com', '_blank')">
+          WhatsApp Web
+        </button>
+    </div>
+    
+     <!--Musik-->
+    
+     <!---->
+      <style>
+        .msc {
+          color: rgb(0, 0, 0);
+          background-color: rgb(255, 0, 0);
+          padding: 10px 20px 10px 20px;
+          border-radius: 5px 5px 20px 20px;
+          border: none;
+          font-size: 20px;
+          letter-spacing: normal;
+          cursor: pointer;
+          font-weight: bold;
+          position: flex;
+        }
+        .msc:hover {
+          box-shadow: 0px 0px 6px 6px #222222;
+        }
+      </style>
+      <div>
+        <ol>
+          <audio id="musik" src="AvengedSevenfold    The Best Song The Rev Full Album.webm"></audio>
+          <button class="msc" id="tombol-play" onclick="playPauseMusik()">
+          Play Music
+          </button>
+        </ol>
+      </div>
+  
+<script>
+  let play = true;
+  function playPauseMusik() {
+    if (play) {
+      document.getElementById("musik").play();
+      document.getElementById("tombol-play").innerHTML = "Pause";
+      play = false;
+    } else {
+      document.getElementById("musik").pause();
+      document.getElementById("tombol-play").innerHTML = "Play";
+      play = true;
+    }
+  }
+</script>
+
+<!--Media Sosial-->
+<style>
+  .MediaSosial {
+    background-color: #ffffff;
+    border-radius: 25px 25px 25px 25px;
+    border: none;
+    height: 50px;
+    width: 50px;
+  }
+ </style> 
+<h1>Acount CPNS | 24301220110015624</h1>
+<h1><strong>MEDIA SOSIAL</strong></h1>
+<nav>
+  <ul>
+    <li>
+       <a href="https://www.facebook.com/" target="_blank">
+        <img class="MediaSosial" src="ico Mr andik/MediaSosial/Facebook_Logo_2023.png" alt="facebook">facebook</a>
+        </li>
+        <li>
+          <a href="https://www.youtube.com/" target="_blank">
+            <img class="MediaSosial" src="ico Mr andik/MediaSosial/youtube_2496113.png" alt="You Tube">You Tube</a>
+      </li>
+      <li>
+          <a href="https://id.savefrom.net/1-cara-mengunduh-video-youtube-164TQ.html" target="_blank">
+            <img class="MediaSosial" src="ico Mr andik/MediaSosial/Download.png">Download YouTube</a>
+      </li>
+      <li>
+        <a href="https://monitoring-siasn.bkn.go.id/" target="_blank">
+          <img class="MediaSosial" src="ico Mr andik/MediaSosial/siasn-white.jpg" alt="monitoring-siasn">Mola Bkn
+        </a>
+      </li>
+      <li>
+        <a href="https://x.com/" target="_blank">
+          <img class="MediaSosial" src="ico Mr andik/MediaSosial/x logo.png" alt="X">X Twetter
+        </a>
+      </li>
+      <li>
+        <a href="https://www.instagram.com/">
+          <img class="MediaSosial" src="ico Mr andik/MediaSosial/IG.jpg" alt="instagram">instagram
+        </a>
+      </li>
+    </ul>
+</nav>
+<!--Media Sosial-->
+
+<!-- AI Assistant -->
+    <style>
+      .ai {
+        background-color: #ffffff;
+        border-radius: 25px 25px 25px 25px;
+        border: none;
+        height: 50px;
+        width: 50px;
+      }
+     </style> 
+    <h1><strong>AI ASSISTANT</strong></h1>
+    <nav>
+      <ul>
+        <li>
+           <a href="https://x.ai/" target="_blank">
+            <img class="ai" src="ico Mr andik/AI ASISTANT/xai.webp">xAi</a>
+            
+            <a href="https://openai.com/index/chatgpt/" target="_blank">
+            <img class="ai" src="ico Mr andik/AI ASISTANT/chat-gpt.png" alt="Chat Gpt">Chat Gpt</a>
+
+            <a href="https://gemini.google.com/app?utm_source=app_launcher&utm_medium=owned&utm_campaign=base_all" target="_blank">
+              <img class="ai" src="ico Mr andik/AI ASISTANT/gemini.png" alt="gemini">Gemini Ai</a>
+            
+            <a href="https://www.meta.ai/" target="_blank">
+              <img class="ai" src="ico Mr andik/AI ASISTANT/meta.png" title="meta icons">Meta Ai
+            </a>
+            
+            <a href="https://chat.deepseek.com/" target="_blank">
+              <img  class="ai" src="ico Mr andik/AI ASISTANT/deepseek-ai.png" title="DeepSeek"> Deep Seek Ai
+            </a>
+            </li>
+        </ul>
+    </nav>
+<!--ai asistant-->
+
+ <!-- Drive Saya -->
+    <style>
+      .drive {
+        background-color: white;
+        border-radius: 25px 25px 25px 25px;
+        border: none;
+        height: 50px;
+        width: 50px;
+      }
+    </style>
+    <h1>
+      Drive Saya
+    </h1>
+    <nav>
+        <ul>
+            <li>
+                  <a href="https://drive.google.com/drive/home" target="_blank">
+                  <img class="drive" img src="ico Mr andik/DRIVE/R.png"  alt="drive" title="google drive"> Google Drive
+                  </a>
+
+                  <a href="https://www.terabox.com/indonesian/login/" target="_blank">
+                  <img class="drive" img src="ico Mr andik/DRIVE/tera.png" alt="terabox"> TeraBox
+                  </a>
+
+                  <a href="https://mega.nz/fm/kUpWhYoR" target="_blank">
+                  <img class="drive" img src="ico Mr andik/DRIVE/mega.png" alt="mega"> Mega
+                  </a>
+               
+                  <a href="https://mail.google.com/mail/u/0/#inbox" target="_blank">
+                  <img class="drive" img src="ico Mr andik/DRIVE/gmail-icon-free-png.png" alt gmail>
+                    Gmail.com
+                  </a>
+                
+            </li>
+        </ul>
+    </nav>
+
+<!-- Data Pribadi Mr. Andik -->
+    <h1>Data Mr. Andik</h1>
+    <nav>
+        <ul>
+         
+            <li>
+                <button class="custom-button">
+                    <a href="CV_CPNS_2024.jpg" target="_blank">
+                        CV
+                    </a>
+                </button>
+            </li>
+            <li>
+                <button class="custom-button">
+                    <a href="3507290404900003_kartuUjianSkb.jpg" target="_blank">
+                        Data CPNS
+                    </a>
+                </button>
+            </li>
+            <li>
+                <button class="custom-button green">
+                    <a href="#">
+                        Phone (082153245087)
+                    </a>
+                </button>
+            </li>
+            <li>
+                <button class="custom-button green">
+                    <a href="#">
+                        Jabatan (Analis Kebijakan)
+                    </a>
+                </button>
+            </li>
+            <li>
+                <button class="custom-button">
+                    <a href="Paritta_Suci.pdf" target="_blank">
+                        Paritta Suci
+                    </a>
+                </button>
+            </li>
+            <li>
+                <button class="custom-button">
+                    <a href="https://dharmabhakti.org/dhammapada/yamaka-vagga/" target="_blank">
+                        Dhammapada
+                    </a>
+                </button>
+            </li>
+            <li>
+                <button class="custom-button">
+                    <a href="https://www.sariputta.com/dhammapada/1/cerita-kisah-cakkhupala-thera" target="_blank">
+                        Sariputta
+                    </a>
+                </button>
+            </li>
+            <li>
+                <button class="custom-button">
+                    <a href="https://sanghatheravadaindonesia.or.id/" target="_blank">
+                        STI
+                    </a>
+                </button>
+            </li>
+        </ul>
+    </nav>
+
+
+
+    <!-- Berita CPNS -->
+    <h1>
+      Berita CPNS
+    </h1>
+
+    <nav>
+        <ul>
+            <li>
+                <button class="custom-button">
+                  <a href="https://news.google.com/home?hl=id&gl=ID&ceid=ID:id" target="_blank">
+                    Google News
+                  </a>
+                </button>
+                <button class="custom-button">
+                  <a href="https://kemenag.go.id/" target="_blank">
+                    Kemenag RI
+                  </a>
+                </button>
+                <button class="custom-button">
+                  <a href="https://kemenag.go.id/buddha" target="_blank">
+                    Beranda Buddha
+                  </a>
+                </button>
+                <button class="custom-button">
+                  <a href="https://kemenag.go.id/berita" target="_blank">
+                    Berita Kemenag RI
+                  </a>
+                </button>
+                <button class="custom-button">
+                  <a href="https://daftar-sscasn.bkn.go.id/login" target="_blank">
+                    Login SSCASN
+                  </a>
+                </button>
+                <button class="custom-button">
+                  <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQBcB7YBFlcroApqO1lxmKMkrOmhbkmx6NugFMI17HM0Gb-aAPgB6TSxv7VB54o43hAX-tV0-cnjtXu/pubhtml#" target="_blank">
+                    Update Usul NIP CPNS 514
+                  </a>
+                </button>
+            </li>
+        </ul>
+    </nav>
+
+   
+    <!-- Game Saya -->
+     <style>
+  .game {
+    background-color: #ffffff;
+    border-radius: 25px 25px 25px 25px;
+    border: none;
+    height: 50px;
+    width: 50px;
+  }
+  </style>
+
+    <h1>Game Saya</h1>
+    <nav>
+        <ul>
+                  <a href="snake-game/index Game.html" target="_blank">
+                    <img class="game" src="ico Mr andik/IconGame/Ular.jpg" alt="snake-game">
+                    Snake Game
+                  </a>
+            </li>
+            <li>                
+                  <a href="Game Tebak Agka/index.html" target="_blank">
+                  <img class="game" src="ico Mr andik/IconGame/8.jpg" alt="8">
+                    Tebak Angka
+                  </a>
+            </li>
+            <li>
+                <a href="Game Tebak Abjad/index.html" target="_blank">
+                  <img class="game" src="ico Mr andik/IconGame/A.jpg" alt="A">
+                    Tebak Abjad
+                  </a>
+            </li> 
+                <li>
+                <a href="memory match/MemoryMath.html" target="_blank">
+                <img class="game" src="ico Mr andik/IconGame/otak.jpg" alt="memory match">
+                  Memory Match
+                  </a>
+            </li>
+            <li>
+                  <a href="f:\1. Document Mr. Sukses\7. GAME\STRONGHOLD HD\Stronghold Crusader.exe">
+                <img class="game" src="ico Mr andik/IconGame/Stronghold.jpg" alt="Stronghold">
+                    Stronghold
+                  </a>
+                </button>
+            </li>
+        </ul>
+    </nav>
+
+    <!--Presentasi SMB-->
+    <h1>
+        Presentasi SMB
+    </h1>
+    <nav>
+        <ul>
+            <li>
+                <button class="custom-button" style="border-color: green;"><a href="RiwayatHidupBuddha\Riwayat_Hidup_Buddha.html" target="_blank">Riwayat Hidup Buddha Gotama</a></button>
+            </li>
+        </ul>
+    </nav>
+<!---->
+    <style>
+.video-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* tinggi layar penuh */
+}
+    </style>
+<div class="video-container">
+  <video width="640" height="360" controls>
+    <source src="Music bila.mp4" type="video/mp4">
+    Browser Anda tidak mendukung tag video.
+  </video>
 </div>
-<a href="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAGVxPIBtwM&#x2F;-IeyaERq5iHuyljEurqjHQ&#x2F;view?utm_content=DAGVxPIBtwM&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">White and Beige Minimalist Graphic Designer Professional Cv Resume</a> oleh Mahir KomputerX
+<!---->
+    
+    <!-- Link Saya -->
+    <h2>Link Saya</h2>
+    <ol>
+        <li>
+          <a href="https://fmhy.net/" target="_blank">
+            Fmhy.net
+          </a>
+        </li>
+        <li>
+          <a href="https://www.yasir252.com/tutorial/website/wordpress/" target="_blank">
+            Yasir 252
+          </a>
+        </li>
+        <li>
+          <a href="https://suttacentral.net/?lang=en" target="_blank">
+            Sutta Central
+          </a>
+        </li>
+        <li>
+          <a href="https://sanghatheravadaindonesia.or.id/" target="_blank">Sangha Theravada Indonesia
+          </a>
+        </li>
+        <li>
+          <a href="https://support.microsoft.com/id-id/account-billing/cara-masuk-ke-akun-microsoft-2ffedaca-6e1b-bc18-f28c-58539e1cb6d3" target="_blank">
+            Microsoft
+          </a>
+        </li>
+    </ol>
+
+</body>
+</html>
